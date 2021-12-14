@@ -85,12 +85,15 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 
 ## Features
 
-- 爬取网站列表
+支持的爬取网站列表：
+
     - [x] [先知安全社区](https://xz.aliyun.com/)
     - [x] [安全客](https://www.anquanke.com/knowledge) (安全知识专区)
     - [x] [Seebug Paper](https://paper.seebug.org/)
     - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
-- 推送机器人列表
+    
+支持的推送机器人列表：
+
     - [x] [企业微信群机器人](https://work.weixin.qq.com/api/doc/90000/90136/91770)
     - [x] [HexQBot](https://github.com/Am473ur/HexQBot) (QQ群机器人 自建)
     - [x] [Server酱](https://sct.ftqq.com/)
