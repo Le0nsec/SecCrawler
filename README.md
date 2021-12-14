@@ -73,6 +73,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 
 
 > Chrome浏览器可以访问`chrome://version/`查看版本
+
 > 命令行可以使用`google-chrome-stable --version`查看版本
 
 
