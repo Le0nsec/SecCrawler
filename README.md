@@ -67,20 +67,19 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 
 
 - Windows和Mac用户在[下载Chrome](https://www.google.cn/chrome/)并安装后，下载对应chrome版本的ChromeDriver并在配置文件`config.yml`中指定ChromeDriver的路径
-- Linux用户在下载Chrome（链接如下）并安装后，下载对应chrome版本的ChromeDriver并在配置文件`config.yml`中指定ChromeDriver的路径
-    - Debian/Ubuntu(64位.deb): https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - Fedora/openSUSE(64位.rpm): https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+- Linux用户在下载Chrome（链接如下）并安装后，同上编辑配置文件
+    - [Debian/Ubuntu(64位.deb)](https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb)
+    - [Fedora/openSUSE(64位.rpm)](https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm)
 
 
 > Chrome浏览器可以访问`chrome://version/`查看版本
->
 > 命令行可以使用`google-chrome-stable --version`查看版本
 
 
 程序旨在帮助安全研究者自动化获取每日更新的安全文章，适用于每日安全日报推送，爬取的安全社区网站范围和支持推送的机器人持续增加中，欢迎在[issues](https://github.com/Le0nsec/SecCrawler/issues)中提供宝贵的建议。
 
 
-> 目前 SecCrawler 已在MacOS Apple silicon 、Ubuntu 20.04运行通过。
+:rocket: 目前 SecCrawler 已在MacOS Apple silicon 、Ubuntu 20.04运行测试通过。
 
 ## Features
 
