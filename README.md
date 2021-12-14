@@ -178,8 +178,7 @@ Anquanke:
 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/66706544/146007477-a130e01e-4a1c-499a-a916-a1605260c505.jpg" style="zoom:25%;" />
-  <img src="https://user-images.githubusercontent.com/66706544/146007414-adf7edf3-a22c-4609-be60-301484162c1a.jpg" style="zoom:25%;" />
+  <img src="https://user-images.githubusercontent.com/66706544/146009777-d64c1ae8-03b6-4da3-82ff-a4a47b17dcf9.png" />
   <img src="https://user-images.githubusercontent.com/66706544/146007857-3ec0babb-5f6e-4e66-bc33-cf8f14833c32.png" />
 </p>
 
