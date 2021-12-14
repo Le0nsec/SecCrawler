@@ -5,8 +5,6 @@ SecCrawler
 
 <h4 align="center">
 一个方便安全研究人员获取每日安全日报的爬虫和推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、棱角社区，持续更新中。
-<br>
-A handy crawler and push program for security researchers to get daily security dailies, currently crawling the XianZhi, Anquanke, Seebug Paper, and Edge Forum, with continuous updates in progress.
 </h4>
 
 
