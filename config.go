@@ -13,6 +13,7 @@ type Config struct {
 	ChromeDriver string `yaml:"ChromeDriver"`
 
 	WecomBot   *WecomBotStruct   `yaml:"WecomBot"`
+	FeishuBot  *FeishuBotStruct  `yaml:"FeishuBot"`
 	HexQBot    *HexQBotStruct    `yaml:"HexQBot"`
 	ServerChan *ServerChanStruct `yaml:"ServerChan"`
 
@@ -23,6 +24,12 @@ type Config struct {
 }
 
 type WecomBotStruct struct {
+	Enabled bool   `yaml:"enabled"`
+	Key     string `yaml:"key"`
+	Timeout uint8  `yaml:"timeout"`
+}
+
+type FeishuBotStruct struct {
 	Enabled bool   `yaml:"enabled"`
 	Key     string `yaml:"key"`
 	Timeout uint8  `yaml:"timeout"`

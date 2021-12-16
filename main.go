@@ -56,6 +56,14 @@ func crawler() {
 				}
 			}
 
+			if cfg.FeishuBot.Enabled {
+				msg := FeishuBotFormat(edgeForumResult, "EdgeForum")
+				err := sendFeishuBot(msg)
+				if err != nil {
+					log.Printf("send [EdgeForum] to [FeishuBot] error: %s\n", err.Error())
+				}
+			}
+
 			// TODO: other bot
 
 		}
@@ -90,6 +98,14 @@ func crawler() {
 				err := sendServerChan(title, msg)
 				if err != nil {
 					log.Printf("send [XianZhi] to [ServerChan] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.FeishuBot.Enabled {
+				msg := FeishuBotFormat(xianZhiResult, "XianZhi")
+				err := sendFeishuBot(msg)
+				if err != nil {
+					log.Printf("send [XianZhi] to [FeishuBot] error: %s\n", err.Error())
 				}
 			}
 
@@ -130,6 +146,14 @@ func crawler() {
 				}
 			}
 
+			if cfg.FeishuBot.Enabled {
+				msg := FeishuBotFormat(seebugPaperResult, "SeebugPaper")
+				err := sendFeishuBot(msg)
+				if err != nil {
+					log.Printf("send [SeebugPaper] to [FeishuBot] error: %s\n", err.Error())
+				}
+			}
+
 			// TODO: other bot
 
 		}
@@ -164,6 +188,14 @@ func crawler() {
 				err := sendServerChan(title, msg)
 				if err != nil {
 					log.Printf("send [Anquanke] to [ServerChan] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.FeishuBot.Enabled {
+				msg := FeishuBotFormat(anquankeResult, "Anquanke")
+				err := sendFeishuBot(msg)
+				if err != nil {
+					log.Printf("send [Anquanke] to [FeishuBot] error: %s\n", err.Error())
 				}
 			}
 

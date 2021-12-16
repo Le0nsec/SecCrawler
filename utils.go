@@ -37,6 +37,16 @@ func wecomBotFormat(crawlerResult [][]string, site string) (msg string) {
 	return title + msg
 }
 
+// FeishuBotFormat 格式化消息。
+func FeishuBotFormat(crawlerResult [][]string, site string) (msg string) {
+	for _, i := range crawlerResult {
+		text := fmt.Sprintf("%s\\n%s\\n\\n", i[1], i[0])
+		msg += text
+	}
+	title := fmt.Sprintf("%s\\n%s\\n\\n", siteDescriptionMap[site], currentTime())
+	return title + msg
+}
+
 // hexQBotFormat 格式化消息。
 func hexQBotFormat(crawlerResult [][]string, site string) (msg string) {
 	for _, i := range crawlerResult {

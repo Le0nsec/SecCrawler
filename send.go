@@ -34,6 +34,31 @@ func sendWecomBot(msg string) error {
 	return nil
 }
 
+// sendFeishuBot 推送消息给飞书机器人。
+func sendFeishuBot(msg string) error {
+	client := &http.Client{
+		Timeout: time.Duration(cfg.WecomBot.Timeout) * time.Second,
+	}
+
+	data := fmt.Sprintf(`{"msg_type":"text","content":{"text":"%s"}}`, msg)
+	req, err := http.NewRequest("POST", "https://open.feishu.cn/open-apis/bot/v2/hook/"+cfg.FeishuBot.Key, strings.NewReader(data))
+	if err != nil {
+		return err
+	}
+	req.Header.Set("Content-type", "application/json")
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	respString, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("[*] send to FeishuBot: %s\n", respString)
+	return nil
+}
+
 // sendHexQBot 推送消息给HexQBot。
 func sendHexQBot(msg string) error {
 	client := &http.Client{
