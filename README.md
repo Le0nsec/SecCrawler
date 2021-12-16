@@ -97,7 +97,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [企业微信群机器人](https://work.weixin.qq.com/api/doc/90000/90136/91770)
 - [x] [HexQBot](https://github.com/Am473ur/HexQBot) (QQ群机器人 自建)
 - [x] [Server酱](https://sct.ftqq.com/)
-- [ ] [飞书群机器人](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN)
+- [x] [飞书群机器人](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN)
 - [ ] [钉钉群机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
 
 ## Install
@@ -119,7 +119,6 @@ $ go build .
 `config.yml`配置文件模板：
 
 ```yml
-
 ############### CronSetting ###############
 
 # 设置每天整点爬取推送时间，范围 0 ~ 23（整数）
@@ -134,6 +133,13 @@ ChromeDriver: ./chromedriver/linux64
 # https://work.weixin.qq.com/api/doc/90000/90136/91770
 WecomBot:
   enabled: false
+  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  timeout: 2  # second
+
+# 飞书群机器人
+# https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
+FeishuBot:
+  enabled: true
   key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
   timeout: 2  # second
 
@@ -174,7 +180,6 @@ SeebugPaper:
 # https://www.anquanke.com/
 Anquanke:
   enabled: true
-
 ```
 
 ## Demo

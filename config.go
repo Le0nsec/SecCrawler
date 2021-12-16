@@ -104,6 +104,13 @@ WecomBot:
   key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
   timeout: 2  # second
 
+# 飞书群机器人
+# https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
+FeishuBot:
+  enabled: true
+  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  timeout: 2  # second
+
 # HexQBot
 # https://github.com/Am473ur/HexQBot
 HexQBot:
