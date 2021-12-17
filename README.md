@@ -44,6 +44,8 @@ SecCrawler
 
 ## Introduction
 
+等过了这段期末时间，加个docker
+
 SecCrawler 是一个跨平台的方便安全研究人员获取每日安全日报的爬虫和机器人推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、棱角社区，持续更新中。
 
 
