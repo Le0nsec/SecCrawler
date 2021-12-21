@@ -297,6 +297,10 @@ func getAnquanke() ([][]string, error) {
 	re, _ = regexp.Compile(`\s{2,}`)
 	bodyString = re.ReplaceAllString(bodyString, "")
 
+	//去除href中可能存在的class
+	re, _ = regexp.Compile(`class="red-title"`)
+	bodyString = re.ReplaceAllString(bodyString, "")
+
 	re = regexp.MustCompile(`<div class="title"><a target="_blank" rel="noopener noreferrer"href="(.*?)"> (.*?)</a></div></i>(.*?)</span>`)
 	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
 
