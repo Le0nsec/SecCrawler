@@ -41,7 +41,7 @@ func crawler() {
 			}
 
 			if cfg.HexQBot.Enabled {
-				msg := hexQBotFormat(edgeForumResult, "EdgeForum")
+				msg := commonFormat(edgeForumResult, "EdgeForum")
 				err := sendHexQBot(msg)
 				if err != nil {
 					log.Printf("send [EdgeForum] to [HexQBot] error: %s\n", err.Error())
@@ -57,10 +57,18 @@ func crawler() {
 			}
 
 			if cfg.FeishuBot.Enabled {
-				msg := FeishuBotFormat(edgeForumResult, "EdgeForum")
+				msg := commonFormat(edgeForumResult, "EdgeForum")
 				err := sendFeishuBot(msg)
 				if err != nil {
 					log.Printf("send [EdgeForum] to [FeishuBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.DingBot.Enabled {
+				msg := commonFormat(edgeForumResult, "EdgeForum")
+				err := sendDingBot(msg)
+				if err != nil {
+					log.Printf("send [EdgeForum] to [DingBot] error: %s\n", err.Error())
 				}
 			}
 
@@ -86,7 +94,7 @@ func crawler() {
 			}
 
 			if cfg.HexQBot.Enabled {
-				msg := hexQBotFormat(xianZhiResult, "XianZhi")
+				msg := commonFormat(xianZhiResult, "XianZhi")
 				err := sendHexQBot(msg)
 				if err != nil {
 					log.Printf("send [XianZhi] to [HexQBot] error: %s\n", err.Error())
@@ -102,10 +110,18 @@ func crawler() {
 			}
 
 			if cfg.FeishuBot.Enabled {
-				msg := FeishuBotFormat(xianZhiResult, "XianZhi")
+				msg := commonFormat(xianZhiResult, "XianZhi")
 				err := sendFeishuBot(msg)
 				if err != nil {
 					log.Printf("send [XianZhi] to [FeishuBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.DingBot.Enabled {
+				msg := commonFormat(xianZhiResult, "XianZhi")
+				err := sendDingBot(msg)
+				if err != nil {
+					log.Printf("send [XianZhi] to [DingBot] error: %s\n", err.Error())
 				}
 			}
 
@@ -131,7 +147,7 @@ func crawler() {
 			}
 
 			if cfg.HexQBot.Enabled {
-				msg := hexQBotFormat(seebugPaperResult, "SeebugPaper")
+				msg := commonFormat(seebugPaperResult, "SeebugPaper")
 				err := sendHexQBot(msg)
 				if err != nil {
 					log.Printf("send [SeebugPaper] to [HexQBot] error: %s\n", err.Error())
@@ -147,10 +163,18 @@ func crawler() {
 			}
 
 			if cfg.FeishuBot.Enabled {
-				msg := FeishuBotFormat(seebugPaperResult, "SeebugPaper")
+				msg := commonFormat(seebugPaperResult, "SeebugPaper")
 				err := sendFeishuBot(msg)
 				if err != nil {
 					log.Printf("send [SeebugPaper] to [FeishuBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.DingBot.Enabled {
+				msg := commonFormat(seebugPaperResult, "SeebugPaper")
+				err := sendDingBot(msg)
+				if err != nil {
+					log.Printf("send [SeebugPaper] to [DingBot] error: %s\n", err.Error())
 				}
 			}
 
@@ -176,7 +200,7 @@ func crawler() {
 			}
 
 			if cfg.HexQBot.Enabled {
-				msg := hexQBotFormat(anquankeResult, "Anquanke")
+				msg := commonFormat(anquankeResult, "Anquanke")
 				err := sendHexQBot(msg)
 				if err != nil {
 					log.Printf("send [Anquanke] to [HexQBot] error: %s\n", err.Error())
@@ -192,10 +216,18 @@ func crawler() {
 			}
 
 			if cfg.FeishuBot.Enabled {
-				msg := FeishuBotFormat(anquankeResult, "Anquanke")
+				msg := commonFormat(anquankeResult, "Anquanke")
 				err := sendFeishuBot(msg)
 				if err != nil {
 					log.Printf("send [Anquanke] to [FeishuBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.DingBot.Enabled {
+				msg := commonFormat(anquankeResult, "Anquanke")
+				err := sendDingBot(msg)
+				if err != nil {
+					log.Printf("send [Anquanke] to [DingBot] error: %s\n", err.Error())
 				}
 			}
 

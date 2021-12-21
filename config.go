@@ -14,6 +14,7 @@ type Config struct {
 
 	WecomBot   *WecomBotStruct   `yaml:"WecomBot"`
 	FeishuBot  *FeishuBotStruct  `yaml:"FeishuBot"`
+	DingBot    *DingBotStruct    `yaml:"DingBot"`
 	HexQBot    *HexQBotStruct    `yaml:"HexQBot"`
 	ServerChan *ServerChanStruct `yaml:"ServerChan"`
 
@@ -32,6 +33,12 @@ type WecomBotStruct struct {
 type FeishuBotStruct struct {
 	Enabled bool   `yaml:"enabled"`
 	Key     string `yaml:"key"`
+	Timeout uint8  `yaml:"timeout"`
+}
+
+type DingBotStruct struct {
+	Enabled bool   `yaml:"enabled"`
+	Token   string `yaml:"token"`
 	Timeout uint8  `yaml:"timeout"`
 }
 
@@ -107,9 +114,16 @@ WecomBot:
 # 飞书群机器人
 # https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
 FeishuBot:
-  enabled: true
-  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  timeout: 2  # second
+enabled: false
+key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+timeout: 2
+
+# 钉钉群机器人
+# https://open.dingtalk.com/document/robots/custom-robot-access
+DingBot:
+enabled: false
+token: xxxxxxxxxxxxxxxxxxxxxx
+timeout: 2
 
 # HexQBot
 # https://github.com/Am473ur/HexQBot
