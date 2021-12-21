@@ -100,7 +100,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [HexQBot](https://github.com/Am473ur/HexQBot) (QQ群机器人 自建)
 - [x] [Server酱](https://sct.ftqq.com/)
 - [x] [飞书群机器人](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN)
-- [ ] [钉钉群机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
+- [x] [钉钉群机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
 
 ## Install
 
