@@ -125,16 +125,16 @@ WecomBot:
 # 飞书群机器人
 # https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
 FeishuBot:
-enabled: false
-key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-timeout: 2
+	enabled: false
+	key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+	timeout: 2
 
 # 钉钉群机器人
 # https://open.dingtalk.com/document/robots/custom-robot-access
 DingBot:
-enabled: false
-token: xxxxxxxxxxxxxxxxxxxxxx
-timeout: 2
+	enabled: false
+	token: xxxxxxxxxxxxxxxxxxxxxx
+	timeout: 2
 
 # HexQBot
 # https://github.com/Am473ur/HexQBot

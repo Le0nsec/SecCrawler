@@ -6,14 +6,15 @@ import (
 	"SecCrawler/send"
 	"SecCrawler/untils"
 	"fmt"
-	"log"
-
 	"github.com/robfig/cron"
+	"log"
 )
 
 func main() {
+	//a := "sssssssss"
+	//send.SendDingBot(a)
+	//spider()
 	_cron := cron.New()
-
 	spec := fmt.Sprintf("0 0 %d * * ?", config.GetConfig().CronTime)
 	fmt.Println(spec)
 	err := _cron.AddFunc(spec, spider)
@@ -71,7 +72,10 @@ func spider() {
 				}
 			}
 
+			fmt.Println(config.Cfg.DingBot.Enabled)
+			fmt.Println(config.Cfg.DingBot.Token)
 			if config.Cfg.DingBot.Enabled {
+				fmt.Println("Ddd")
 				msg := untils.CommonFormat(edgeForumResult, "EdgeForum")
 				err := send.SendDingBot(msg)
 				if err != nil {
@@ -161,6 +165,10 @@ func spider() {
 				}
 			}
 
+			fmt.Println(config.Cfg.ServerChan.Enabled)
+			if false{
+				fmt.Println("dd")
+			}
 			if config.Cfg.ServerChan.Enabled {
 				title, msg := untils.ServerChanFormat(seebugPaperResult, "SeebugPaper")
 				err := send.SendServerChan(title, msg)
@@ -177,6 +185,7 @@ func spider() {
 				}
 			}
 
+			fmt.Println("DingBot",config.Cfg.DingBot.Enabled)
 			if config.Cfg.DingBot.Enabled {
 				msg := untils.CommonFormat(seebugPaperResult, "SeebugPaper")
 				err := send.SendDingBot(msg)
@@ -229,6 +238,8 @@ func spider() {
 					log.Printf("send [Anquanke] to [FeishuBot] error: %s\n", err.Error())
 				}
 			}
+
+
 
 			if config.Cfg.DingBot.Enabled {
 				msg := untils.CommonFormat(anquankeResult, "Anquanke")
