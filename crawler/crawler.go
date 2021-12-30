@@ -1,6 +1,8 @@
-package main
+package crawler
 
 import (
+	"SecCrawler/config"
+	"SecCrawler/untils"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -13,8 +15,8 @@ import (
 	"github.com/tebeka/selenium/chrome"
 )
 
-// getEdgeForum 获取棱角社区前24小时内文章。
-func getEdgeForum() ([][]string, error) {
+// GetEdgeForum 获取棱角社区前24小时内文章。
+func GetEdgeForum() ([][]string, error) {
 	client := &http.Client{
 		Timeout: time.Duration(4) * time.Second,
 	}
@@ -63,7 +65,7 @@ func getEdgeForum() ([][]string, error) {
 	// fmt.Println(result)
 
 	var resultSlice [][]string
-	fmt.Printf("------------------------------\n[*] [EdgeForum] crawler result:\n%s\n\n", currentTime())
+	fmt.Printf("------------------------------\n[*] [EdgeForum] crawler result:\n%s\n\n", untils.CurrentTime())
 	for _, match := range result {
 		fmt.Printf("%s\n", match[1:][1])
 		fmt.Printf("%s\n\n", match[1:][0])
@@ -72,8 +74,8 @@ func getEdgeForum() ([][]string, error) {
 	return resultSlice, nil
 }
 
-// getXianZhi 获取先知安全技术社区前24小时内文章。
-func getXianZhi() ([][]string, error) {
+// GetXianZhi 获取先知安全技术社区前24小时内文章。
+func GetXianZhi() ([][]string, error) {
 	text, err := fetchXianZhiBySelenium()
 	if err != nil {
 		return nil, err
@@ -83,13 +85,13 @@ func getXianZhi() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(text), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("------------------------------\n[*] [XianZhi] crawler result:\n%s\n\n", currentTime())
+	fmt.Printf("------------------------------\n[*] [XianZhi] crawler result:\n%s\n\n", untils.CurrentTime())
 	for _, match := range result {
 		t, err := time.Parse(time.RFC3339, match[1:][0])
 		if err != nil {
 			return nil, err
 		}
-		if !isIn24Hours(t) {
+		if !untils.IsIn24Hours(t) {
 			// 默认时间顺序是从近到远
 			break
 		}
@@ -129,7 +131,7 @@ func fetchXianZhiBySelenium() (string, error) {
 	}
 
 	caps.AddChrome(chromeCaps)
-	_, err := selenium.NewChromeDriverService(cfg.ChromeDriver, 29515, opts...)
+	_, err := selenium.NewChromeDriverService(config.Cfg.ChromeDriver, 29515, opts...)
 	if err != nil {
 		return "", err
 	}
@@ -159,8 +161,8 @@ func fetchXianZhiBySelenium() (string, error) {
 	return text, nil
 }
 
-// getSeebugPaper 获取Paper Seebug（知道创宇）前24小时内文章。
-func getSeebugPaper() ([][]string, error) {
+// GetSeebugPaper 获取Paper Seebug（知道创宇）前24小时内文章。
+func GetSeebugPaper() ([][]string, error) {
 	client := &http.Client{
 		Timeout: time.Duration(4) * time.Second,
 	}
@@ -195,7 +197,7 @@ func getSeebugPaper() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("------------------------------\n[*] [SeebugPaper] crawler result:\n%s\n\n", currentTime())
+	fmt.Printf("------------------------------\n[*] [SeebugPaper] crawler result:\n%s\n\n", untils.CurrentTime())
 	for _, match := range result {
 		utc, _ := time.LoadLocation("UTC")
 		t, err := time.ParseInLocation(time.RFC1123Z, match[1:][2], utc)
@@ -204,7 +206,7 @@ func getSeebugPaper() ([][]string, error) {
 		}
 
 		time_zone := time.FixedZone("CST", 8*3600)
-		if !isIn24Hours(t.In(time_zone)) {
+		if !untils.IsIn24Hours(t.In(time_zone)) {
 			// 默认时间顺序是从近到远
 			break
 		}
@@ -229,8 +231,8 @@ func getSeebugPaper() ([][]string, error) {
 	return resultSlice, nil
 }
 
-// getAnquanke 获取安全客前24小时内文章。
-func getAnquanke() ([][]string, error) {
+// GetAnquanke 获取安全客前24小时内文章。
+func GetAnquanke() ([][]string, error) {
 	client := &http.Client{
 		Timeout: time.Duration(4) * time.Second,
 	}
@@ -305,7 +307,7 @@ func getAnquanke() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("------------------------------\n[*] [Anquanke] crawler result:\n%s\n\n", currentTime())
+	fmt.Printf("------------------------------\n[*] [Anquanke] crawler result:\n%s\n\n", untils.CurrentTime())
 	for _, match := range result {
 		match[1:][0] = "https://www.anquanke.com" + match[1:][0]
 		time_zone := time.FixedZone("CST", 8*3600)
@@ -314,7 +316,7 @@ func getAnquanke() ([][]string, error) {
 			return nil, err
 		}
 
-		if !isIn24Hours(t) {
+		if !untils.IsIn24Hours(t) {
 			// 默认时间顺序是从近到远
 			break
 		}

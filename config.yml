@@ -1,0 +1,69 @@
+
+############### CronSetting ###############
+
+# 设置每天整点爬取推送时间，范围 0 ~ 23（整数）
+CronTime: 10
+# 设置Selenium使用的ChromeDriver路径，支持相对路径或绝对路径（如果不爬取先知社区可以不用设置）
+ChromeDriver: ./chromedriver/linux64
+
+
+############### BotConfig ###############
+
+# 企业微信群机器人
+# https://work.weixin.qq.com/api/doc/90000/90136/91770
+WecomBot:
+  enabled: false
+  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  timeout: 2  # second
+
+# 飞书群机器人
+# https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
+FeishuBot:
+enabled: false
+key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+timeout: 2
+
+# 钉钉群机器人
+# https://open.dingtalk.com/document/robots/custom-robot-access
+DingBot:
+enabled: false
+token: xxxxxxxxxxxxxxxxxxxxxx
+timeout: 2
+
+# HexQBot
+# https://github.com/Am473ur/HexQBot
+HexQBot:
+  enabled: false
+  api: http://xxx.xxxxxx.com/send
+  qqgroup: 000000000
+  timeout: 2
+
+# Server酱
+# https://sct.ftqq.com/
+ServerChan:
+  enabled: false
+  sendkey: xxxxxxxxxxxxxxxxxxxxxx
+  timeout: 2
+
+
+############### SiteEnable ###############
+
+# 棱角社区
+# https://forum.ywhack.com/forum-59-1.html
+EdgeForum:
+  enabled: true
+
+# 先知安全技术社区
+# https://xz.aliyun.com/
+XianZhi:
+  enabled: true
+
+# SeebugPaper（知道创宇404实验室）
+# https://paper.seebug.org/
+SeebugPaper:
+  enabled: true
+
+# 安全客
+# https://www.anquanke.com/
+Anquanke:
+  enabled: true

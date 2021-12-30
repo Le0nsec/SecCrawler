@@ -1,22 +1,24 @@
-package main
+package send
 
 import (
+	"SecCrawler/config"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
 	"time"
+	//"honnef.co/go/tools/analysis/facts/nilness"
 )
 
-// sendWecomBot 推送消息给企业微信机器人。
-func sendWecomBot(msg string) error {
+// SendWecomBot 推送消息给企业微信机器人。
+func SendWecomBot(msg string) error {
 	client := &http.Client{
-		Timeout: time.Duration(cfg.WecomBot.Timeout) * time.Second,
+		Timeout: time.Duration(config.Cfg.WecomBot.Timeout) * time.Second,
 	}
 
 	data := fmt.Sprintf(`{"msgtype": "markdown", "markdown": {"content": "%s"}}`, msg)
-	req, err := http.NewRequest("POST", "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="+cfg.WecomBot.Key, strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="+config.Cfg.WecomBot.Key, strings.NewReader(data))
 	if err != nil {
 		return err
 	}
@@ -34,14 +36,14 @@ func sendWecomBot(msg string) error {
 	return nil
 }
 
-// sendFeishuBot 推送消息给飞书群机器人。
-func sendFeishuBot(msg string) error {
+// SendFeishuBot 推送消息给飞书群机器人。
+func SendFeishuBot(msg string) error {
 	client := &http.Client{
-		Timeout: time.Duration(cfg.WecomBot.Timeout) * time.Second,
+		Timeout: time.Duration(config.Cfg.WecomBot.Timeout) * time.Second,
 	}
 
 	data := fmt.Sprintf(`{"msg_type":"text","content":{"text":"%s"}}`, msg)
-	req, err := http.NewRequest("POST", "https://open.feishu.cn/open-apis/bot/v2/hook/"+cfg.FeishuBot.Key, strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://open.feishu.cn/open-apis/bot/v2/hook/"+config.Cfg.FeishuBot.Key, strings.NewReader(data))
 	if err != nil {
 		return err
 	}
@@ -59,14 +61,14 @@ func sendFeishuBot(msg string) error {
 	return nil
 }
 
-// sendDingBot 推送消息给钉钉群机器人。
-func sendDingBot(msg string) error {
+// SendDingBot 推送消息给钉钉群机器人。
+func SendDingBot(msg string) error {
 	client := &http.Client{
-		Timeout: time.Duration(cfg.DingBot.Timeout) * time.Second,
+		Timeout: time.Duration(config.Cfg.DingBot.Timeout) * time.Second,
 	}
 
 	data := fmt.Sprintf(`{"msgtype": "text","text": {"content":"%s"}}`, msg)
-	req, err := http.NewRequest("POST", "https://oapi.dingtalk.com/robot/send?access_token="+cfg.DingBot.Token, strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://oapi.dingtalk.com/robot/send?access_token="+config.Cfg.DingBot.Token, strings.NewReader(data))
 	if err != nil {
 		return err
 	}
@@ -84,14 +86,14 @@ func sendDingBot(msg string) error {
 	return nil
 }
 
-// sendHexQBot 推送消息给HexQBot。
-func sendHexQBot(msg string) error {
+// SendHexQBot 推送消息给HexQBot。
+func SendHexQBot(msg string) error {
 	client := &http.Client{
-		Timeout: time.Duration(cfg.HexQBot.Timeout) * time.Second,
+		Timeout: time.Duration(config.Cfg.HexQBot.Timeout) * time.Second,
 	}
 
-	data := fmt.Sprintf(`{"msg": "%s", "num": %d}`, msg, cfg.HexQBot.QQGroup)
-	req, err := http.NewRequest("POST", cfg.HexQBot.Api, strings.NewReader(data))
+	data := fmt.Sprintf(`{"msg": "%s", "num": %d}`, msg, config.Cfg.HexQBot.QQGroup)
+	req, err := http.NewRequest("POST", config.Cfg.HexQBot.Api, strings.NewReader(data))
 	if err != nil {
 		return err
 	}
@@ -109,15 +111,15 @@ func sendHexQBot(msg string) error {
 	return nil
 }
 
-// sendServerChan 推送消息给Server酱。
-func sendServerChan(title, msg string) error {
+// SendServerChan 推送消息给Server酱。
+func SendServerChan(title, msg string) error {
 	client := &http.Client{
-		Timeout: time.Duration(cfg.ServerChan.Timeout) * time.Second,
+		Timeout: time.Duration(config.Cfg.ServerChan.Timeout) * time.Second,
 	}
 
 	data := fmt.Sprintf(`title=%s&desp=%s`, url.QueryEscape(title), url.QueryEscape(msg))
 
-	req, err := http.NewRequest("POST", "https://sctapi.ftqq.com/"+cfg.ServerChan.SendKey+".send", strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://sctapi.ftqq.com/"+config.Cfg.ServerChan.SendKey+".send", strings.NewReader(data))
 	if err != nil {
 		return err
 	}

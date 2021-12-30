@@ -1,11 +1,12 @@
-package main
+package untils
 
 import (
+	"SecCrawler/config"
 	"fmt"
 	"time"
 )
 
-func currentTime() string {
+func CurrentTime() string {
 	time_zone := time.FixedZone("CST", 8*3600) // 8*3600 = 8h
 	n := time.Now().In(time_zone)
 	// 获取时间，格式如2006/01/02 15:04:05
@@ -15,11 +16,11 @@ func currentTime() string {
 	return formatTime
 }
 
-func isIn24Hours(t time.Time) bool {
+func IsIn24Hours(t time.Time) bool {
 	time_zone := time.FixedZone("CST", 8*3600) // 8*3600 = 8h
 	now := time.Now().In(time_zone)
 	// 根据config生成每日整点时间
-	cronTime := time.Date(now.Year(), now.Month(), now.Day(), int(cfg.CronTime), 0, 0, 0, time_zone)
+	cronTime := time.Date(now.Year(), now.Month(), now.Day(), int(config.GetConfig().CronTime), 0, 0, 0, time_zone)
 	subTime := cronTime.Sub(t)
 	if subTime > time.Duration(24)*time.Hour || subTime < time.Duration(0) {
 		return false
@@ -27,31 +28,31 @@ func isIn24Hours(t time.Time) bool {
 	return true
 }
 
-// wecomBotFormat 格式化消息为markdown格式。
-func wecomBotFormat(crawlerResult [][]string, site string) (msg string) {
+// WecomBotFormat 格式化消息为markdown格式。
+func WecomBotFormat(crawlerResult [][]string, site string) (msg string) {
 	for _, i := range crawlerResult {
 		text := fmt.Sprintf("> %s\\n\\n[%s](%s)\\n\\n\\n", i[1], i[0], i[0])
 		msg += text
 	}
-	title := fmt.Sprintf("## %s\\n### %s\\n\\n\\n", siteDescriptionMap[site], currentTime())
+	title := fmt.Sprintf("## %s\\n### %s\\n\\n\\n", config.SiteDescriptionMap[site], CurrentTime())
 	return title + msg
 }
 
-// commonFormat 格式化消息。
-func commonFormat(crawlerResult [][]string, site string) (msg string) {
+// CommonFormat 格式化消息。
+func CommonFormat(crawlerResult [][]string, site string) (msg string) {
 	for _, i := range crawlerResult {
 		text := fmt.Sprintf("%s\\n%s\\n\\n", i[1], i[0])
 		msg += text
 	}
-	title := fmt.Sprintf("%s\\n%s\\n\\n", siteDescriptionMap[site], currentTime())
+	title := fmt.Sprintf("%s\\n%s\\n\\n", config.SiteDescriptionMap[site], CurrentTime())
 	return title + msg
 }
 
-// serverChanFormat 格式化消息。
-func serverChanFormat(crawlerResult [][]string, site string) (title, msg string) {
+// ServerChanFormat 格式化消息。
+func ServerChanFormat(crawlerResult [][]string, site string) (title, msg string) {
 	for _, i := range crawlerResult {
 		text := fmt.Sprintf("%s\n[%s](%s)\n\n", i[1], i[0], i[0])
 		msg += text
 	}
-	return siteDescriptionMap[site], msg
+	return config.SiteDescriptionMap[site], msg
 }

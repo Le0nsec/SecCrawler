@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"fmt"
@@ -72,14 +72,25 @@ type AnquankeStruct struct {
 }
 
 // 全局Config
-var cfg *Config
+var Cfg *Config
 
-var siteDescriptionMap = map[string]string{
+func GetConfig()  *Config  {
+	//fmt.Println(Cfg)
+	return Cfg
+}
+
+var SiteDescriptionMap = map[string]string{
 	"EdgeForum":   "棱角社区攻防日报",
 	"XianZhi":     "先知安全技术社区",
 	"SeebugPaper": "SeebugPaper-安全技术精粹",
 	"Anquanke":    "安全客-安全资讯平台",
 }
+
+//func GetSiteDescription(name string)  string {
+//		value := siteDescriptionMap[name]
+//		return value
+//
+//}
 
 func init() {
 	log.SetPrefix("[!] ")
@@ -176,10 +187,19 @@ Anquanke:
 			log.Fatalf("read config file error: %s\n", err.Error())
 		}
 
-		err = viper.Unmarshal(&cfg)
+		err = viper.Unmarshal(&Cfg)
 		if err != nil {
 			log.Fatalf("unmarshal config error: %s\n", err.Error())
 		}
 		fmt.Printf("[*] load config success!\n\n")
 	}
 }
+
+//func main()  {
+//	my := GetConfig().CronTime
+//	fmt.Println(my)
+//
+//	site :="EdgeForum"
+//	a := SiteDescriptionMap[site]
+//	fmt.Println(a)
+//}
