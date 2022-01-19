@@ -31,5 +31,6 @@ jobs:
         goarch: ${{ matrix.goarch }}
         goversion: 1.16
         overwrite: true
-        build_flags: -ldflags="-s -w" -trimpath
+        build_flags: -trimpath
+        ldflags: -s -w
         asset_name: SecCrawler_${{ matrix.goos }}_${{ matrix.goarch }}_${{ steps.get_version.outputs.VERSION }}
