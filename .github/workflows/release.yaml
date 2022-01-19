@@ -2,6 +2,7 @@ name: 🎉 Release Go Binary
 on: 
   release:
     types: [created]
+  workflow_dispatch:
 
 jobs:
   releases-matrix:
@@ -25,4 +26,6 @@ jobs:
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
         goversion: 1.16
-        asset_name: ${BINARY_NAME}_${{ matrix.goos }}_${{ matrix.goarch }}_${RELEASE_TAG}
+        overwrite: true
+        build_flags: "-ldflags=\"-s -w\" -trimpath"
+        asset_name: SecCrawler_${{ matrix.goos }}_${{ matrix.goarch }}_${{ github.ref }}
