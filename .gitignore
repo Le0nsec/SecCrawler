@@ -3,3 +3,5 @@ build.sh
 release_*
 config.yml
 chromedriver
+.vscode/
+.idea/
