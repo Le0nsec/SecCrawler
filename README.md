@@ -46,8 +46,6 @@ SecCrawler
 
 ## Introduction
 
-等过了这段期末时间，加个docker
-
 SecCrawler 是一个跨平台的方便安全研究人员获取每日安全日报的爬虫和机器人推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、棱角社区，持续更新中。
 
 
@@ -95,6 +93,8 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [安全客](https://www.anquanke.com/knowledge) (安全知识专区)
 - [x] [Seebug Paper](https://paper.seebug.org/)
 - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
+- [ ] [跳跳糖](https://tttang.com/)
+- [ ] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
     
 支持的推送机器人列表：
 
@@ -103,6 +103,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [Server酱](https://sct.ftqq.com/)
 - [x] [飞书群机器人](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN)
 - [x] [钉钉群机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
+- [ ] [pushplus](http://pushplus.hxtrip.com/)
 
 ## Install
 
@@ -124,9 +125,10 @@ $ go build .
 
 ```yml
 ############### CronSetting ###############
-
+# 开启则一次性爬取后退出程序
+Debug: false
 # 设置每天整点爬取推送时间，范围 0 ~ 23（整数）
-CronTime: 10
+CronTime: 11
 # 设置Selenium使用的ChromeDriver路径，支持相对路径或绝对路径（如果不爬取先知社区可以不用设置）
 ChromeDriver: ./chromedriver/linux64
 
@@ -143,16 +145,24 @@ WecomBot:
 # 飞书群机器人
 # https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
 FeishuBot:
-  enabled: true
-  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  timeout: 2  # second
+enabled: false
+key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+timeout: 2
+
+# 钉钉群机器人
+# https://open.dingtalk.com/document/robots/custom-robot-access
+DingBot:
+enabled: false
+token: xxxxxxxxxxxxxxxxxxxxxx
+timeout: 2
 
 # HexQBot
 # https://github.com/Am473ur/HexQBot
 HexQBot:
   enabled: false
-  api: http://xxx.xxxxxx.com/send
+  api: http://xxxxxx.com/send
   qqgroup: 000000000
+  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
   timeout: 2
 
 # Server酱
