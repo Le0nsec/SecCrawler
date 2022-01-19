@@ -3,26 +3,31 @@ package main
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/robfig/cron"
 )
 
 func main() {
-	_cron := cron.New()
-	spec := fmt.Sprintf("0 0 %d * * ?", cfg.CronTime)
-	err := _cron.AddFunc(spec, crawler)
-	// err := _cron.AddFunc("0 */1 * * * ?", crawler) //每分钟
-	if err != nil {
-		log.Fatalf("add cron error: %s\n", err.Error())
-	}
+	if !cfg.Debug {
+		_cron := cron.New()
+		spec := fmt.Sprintf("0 0 %d * * ?", cfg.CronTime)
+		err := _cron.AddFunc(spec, crawler)
+		// err := _cron.AddFunc("0 */1 * * * ?", crawler) //每分钟
+		if err != nil {
+			log.Fatalf("add cron error: %s\n", err.Error())
+		}
 
-	_cron.Start()
-	defer _cron.Stop()
-	select {}
+		_cron.Start()
+		defer _cron.Stop()
+		select {}
+	} else {
+		crawler()
+	}
 }
 
 func crawler() {
-	fmt.Printf("-----------------------------------------------\n[♥︎] crawler start at %s\n-----------------------------------------------\n\n", currentTime())
+	fmt.Printf("%s\n[♥︎] crawler start at %s\n%s\n\n", strings.Repeat("-", 47), currentTime(), strings.Repeat("-", 47))
 
 	if cfg.EdgeForum.Enabled {
 		var edgeForumResult [][]string

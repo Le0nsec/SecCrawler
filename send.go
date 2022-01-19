@@ -90,7 +90,7 @@ func sendHexQBot(msg string) error {
 		Timeout: time.Duration(cfg.HexQBot.Timeout) * time.Second,
 	}
 
-	data := fmt.Sprintf(`{"msg": "%s", "num": %d}`, msg, cfg.HexQBot.QQGroup)
+	data := fmt.Sprintf(`{"msg": "%s", "num": %d, "key": "%s"}`, msg, cfg.HexQBot.QQGroup, cfg.HexQBot.Key)
 	req, err := http.NewRequest("POST", cfg.HexQBot.Api, strings.NewReader(data))
 	if err != nil {
 		return err

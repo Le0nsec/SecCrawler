@@ -19,7 +19,13 @@ func isIn24Hours(t time.Time) bool {
 	time_zone := time.FixedZone("CST", 8*3600) // 8*3600 = 8h
 	now := time.Now().In(time_zone)
 	// 根据config生成每日整点时间
-	cronTime := time.Date(now.Year(), now.Month(), now.Day(), int(cfg.CronTime), 0, 0, 0, time_zone)
+	var hour int
+	if cfg.Debug {
+		hour = now.Hour()
+	} else {
+		hour = int(cfg.CronTime)
+	}
+	cronTime := time.Date(now.Year(), now.Month(), now.Day(), hour, 0, 0, 0, time_zone)
 	subTime := cronTime.Sub(t)
 	if subTime > time.Duration(24)*time.Hour || subTime < time.Duration(0) {
 		return false

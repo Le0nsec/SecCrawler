@@ -1,3 +1,5 @@
 .DS_Store
 build.sh
 release_*
+config.yml
+chromedriver

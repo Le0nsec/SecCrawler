@@ -63,7 +63,7 @@ func getEdgeForum() ([][]string, error) {
 	// fmt.Println(result)
 
 	var resultSlice [][]string
-	fmt.Printf("------------------------------\n[*] [EdgeForum] crawler result:\n%s\n\n", currentTime())
+	fmt.Printf("%s\n[*] [EdgeForum] crawler result:\n%s\n\n", strings.Repeat("-", 30), currentTime())
 	for _, match := range result {
 		fmt.Printf("%s\n", match[1:][1])
 		fmt.Printf("%s\n\n", match[1:][0])
@@ -83,7 +83,7 @@ func getXianZhi() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(text), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("------------------------------\n[*] [XianZhi] crawler result:\n%s\n\n", currentTime())
+	fmt.Printf("%s\n[*] [XianZhi] crawler result:\n%s\n\n", strings.Repeat("-", 30), currentTime())
 	for _, match := range result {
 		t, err := time.Parse(time.RFC3339, match[1:][0])
 		if err != nil {
@@ -195,7 +195,7 @@ func getSeebugPaper() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("------------------------------\n[*] [SeebugPaper] crawler result:\n%s\n\n", currentTime())
+	fmt.Printf("%s\n[*] [SeebugPaper] crawler result:\n%s\n\n", strings.Repeat("-", 30), currentTime())
 	for _, match := range result {
 		utc, _ := time.LoadLocation("UTC")
 		t, err := time.ParseInLocation(time.RFC1123Z, match[1:][2], utc)
@@ -305,7 +305,7 @@ func getAnquanke() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("------------------------------\n[*] [Anquanke] crawler result:\n%s\n\n", currentTime())
+	fmt.Printf("%s\n[*] [Anquanke] crawler result:\n%s\n\n", strings.Repeat("-", 30), currentTime())
 	for _, match := range result {
 		match[1:][0] = "https://www.anquanke.com" + match[1:][0]
 		time_zone := time.FixedZone("CST", 8*3600)
