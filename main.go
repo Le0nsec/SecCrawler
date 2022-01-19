@@ -240,4 +240,57 @@ func crawler() {
 
 		}
 	}
+
+	if cfg.Tttang.Enabled {
+		var tttangResult [][]string
+		var err error
+		tttangResult, err = getTttang()
+		if err != nil {
+			log.Printf("crawl [Tttang] error: %s\n\n", err.Error())
+		} else {
+
+			if cfg.WecomBot.Enabled {
+				msg := wecomBotFormat(tttangResult, "Tttang")
+				err := sendWecomBot(msg)
+				if err != nil {
+					log.Printf("send [Tttang] to [WecomBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.HexQBot.Enabled {
+				msg := commonFormat(tttangResult, "Tttang")
+				err := sendHexQBot(msg)
+				if err != nil {
+					log.Printf("send [Tttang] to [HexQBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.ServerChan.Enabled {
+				title, msg := serverChanFormat(tttangResult, "Tttang")
+				err := sendServerChan(title, msg)
+				if err != nil {
+					log.Printf("send [Tttang] to [ServerChan] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.FeishuBot.Enabled {
+				msg := commonFormat(tttangResult, "Tttang")
+				err := sendFeishuBot(msg)
+				if err != nil {
+					log.Printf("send [Tttang] to [FeishuBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.DingBot.Enabled {
+				msg := commonFormat(tttangResult, "Tttang")
+				err := sendDingBot(msg)
+				if err != nil {
+					log.Printf("send [Tttang] to [DingBot] error: %s\n", err.Error())
+				}
+			}
+
+			// TODO: other bot
+
+		}
+	}
 }

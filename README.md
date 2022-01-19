@@ -93,7 +93,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [安全客](https://www.anquanke.com/knowledge) (安全知识专区)
 - [x] [Seebug Paper](https://paper.seebug.org/)
 - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
-- [ ] [跳跳糖](https://tttang.com/)
+- [x] [跳跳糖](https://tttang.com/)
 - [ ] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
     
 支持的推送机器人列表：
@@ -194,6 +194,11 @@ SeebugPaper:
 # https://www.anquanke.com/
 Anquanke:
   enabled: true
+
+# 跳跳糖
+# http://tttang.com/
+Tttang:
+  enable: true
 ```
 
 ## Demo

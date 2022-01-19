@@ -23,6 +23,7 @@ type Config struct {
 	XianZhi     *XianZhiStruct     `yaml:"XianZhi"`
 	SeebugPaper *SeebugPaperStruct `yaml:"SeebugPaper"`
 	Anquanke    *AnquankeStruct    `yaml:"Anquanke"`
+	Tttang      *TttangStruct      `yaml:"Tttang"`
 }
 
 type WecomBotStruct struct {
@@ -73,6 +74,10 @@ type AnquankeStruct struct {
 	Enabled bool `yaml:"enabled"`
 }
 
+type TttangStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+
 // 全局Config
 var cfg *Config
 
@@ -81,6 +86,7 @@ var siteDescriptionMap = map[string]string{
 	"XianZhi":     "先知安全技术社区",
 	"SeebugPaper": "SeebugPaper-安全技术精粹",
 	"Anquanke":    "安全客-安全资讯平台",
+	"Tttang":      "跳跳糖-安全与分享社区",
 }
 
 func init() {
@@ -117,16 +123,16 @@ WecomBot:
 # 飞书群机器人
 # https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
 FeishuBot:
-enabled: false
-key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-timeout: 2
+  enabled: false
+  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  timeout: 2
 
 # 钉钉群机器人
 # https://open.dingtalk.com/document/robots/custom-robot-access
 DingBot:
-enabled: false
-token: xxxxxxxxxxxxxxxxxxxxxx
-timeout: 2
+  enabled: false
+  token: xxxxxxxxxxxxxxxxxxxxxx
+  timeout: 2
 
 # HexQBot
 # https://github.com/Am473ur/HexQBot
@@ -166,6 +172,11 @@ SeebugPaper:
 # https://www.anquanke.com/
 Anquanke:
   enabled: true
+
+# 跳跳糖
+# http://tttang.com/
+Tttang:
+  enable: true
 `
 		_, err = f.WriteString(configString)
 		if err != nil {
