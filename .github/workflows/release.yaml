@@ -1,4 +1,4 @@
-
+name: 🎉 Release Go Binary
 on: 
   release:
     types: [created]
