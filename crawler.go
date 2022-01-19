@@ -369,13 +369,12 @@ func getTttang() ([][]string, error) {
 	var resultSlice [][]string
 	fmt.Printf("%s\n[*] [Tttang] crawler result:\n%s\n\n", strings.Repeat("-", 30), currentTime())
 	for _, match := range result {
-		utc, _ := time.LoadLocation("UTC")
-		t, err := time.ParseInLocation(time.RFC1123Z, match[1:][2], utc)
+		time_zone := time.FixedZone("CST", 8*3600)
+		t, err := time.ParseInLocation(time.RFC1123Z, match[1:][2], time_zone)
 		if err != nil {
 			return nil, err
 		}
 
-		time_zone := time.FixedZone("CST", 8*3600)
 		if !isIn24Hours(t.In(time_zone)) {
 			// 默认时间顺序是从近到远
 			break
