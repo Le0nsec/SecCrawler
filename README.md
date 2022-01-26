@@ -107,7 +107,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 
 ## Install
 
-你可以在[Releases](https://github.com/Le0nsec/SecCrawler-dev/releases)下载最新的SecCrawler。
+你可以在[Releases](https://github.com/Le0nsec/SecCrawler/releases)下载最新的SecCrawler。
 
 
 或者从源码编译：
