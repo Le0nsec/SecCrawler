@@ -94,7 +94,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [Seebug Paper](https://paper.seebug.org/)
 - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
 - [x] [跳跳糖](https://tttang.com/)
-- [ ] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
+- [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
     
 支持的推送机器人列表：
 
