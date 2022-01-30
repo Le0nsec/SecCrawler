@@ -24,7 +24,7 @@ type Config struct {
 	SeebugPaper *SeebugPaperStruct `yaml:"SeebugPaper"`
 	Anquanke    *AnquankeStruct    `yaml:"Anquanke"`
 	Tttang      *TttangStruct      `yaml:"Tttang"`
-	QiAnXin     *QiAnXin           `yaml:"QiAnXin"`
+	QiAnXin     *QiAnXinStruct     `yaml:"QiAnXin"`
 }
 
 type WecomBotStruct struct {
@@ -79,7 +79,7 @@ type TttangStruct struct {
 	Enabled bool `yaml:"enabled"`
 }
 
-type QiAnXin struct {
+type QiAnXinStruct struct {
 	Enabled bool `yaml:"enablesd"`
 }
 
