@@ -24,6 +24,7 @@ type Config struct {
 	SeebugPaper *SeebugPaperStruct `yaml:"SeebugPaper"`
 	Anquanke    *AnquankeStruct    `yaml:"Anquanke"`
 	Tttang      *TttangStruct      `yaml:"Tttang"`
+	QiAnXin     *QiAnXin           `yaml:"QiAnXin"`
 }
 
 type WecomBotStruct struct {
@@ -78,6 +79,10 @@ type TttangStruct struct {
 	Enabled bool `yaml:"enabled"`
 }
 
+type QiAnXin struct {
+	Enabled bool `yaml:"enablesd"`
+}
+
 // 全局Config
 var cfg *Config
 
@@ -87,6 +92,7 @@ var siteDescriptionMap = map[string]string{
 	"SeebugPaper": "SeebugPaper-安全技术精粹",
 	"Anquanke":    "安全客-安全资讯平台",
 	"Tttang":      "跳跳糖-安全与分享社区",
+	"QiAnXin":     "奇安信攻防社区",
 }
 
 func init() {
@@ -177,6 +183,11 @@ Anquanke:
 # http://tttang.com/
 Tttang:
   enable: true
+
+# 奇安信攻防社区
+# https://forum.butian.net/community/all/newest
+QiAnXin:
+  enabled: true
 `
 		_, err = f.WriteString(configString)
 		if err != nil {

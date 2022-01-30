@@ -293,4 +293,58 @@ func crawler() {
 
 		}
 	}
+
+	if cfg.QiAnXin.Enabled {
+		var qianxinResult [][]string
+		var err error
+		qianxinResult, err = getQiAnXin()
+		if err != nil {
+			log.Printf("crawl [QiAnXin] error: %s\n\n", err.Error())
+		} else {
+
+			if cfg.WecomBot.Enabled {
+				msg := wecomBotFormat(qianxinResult, "QiAnXin")
+				err := sendWecomBot(msg)
+				if err != nil {
+					log.Printf("send [QiAnXin] to [WecomBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.HexQBot.Enabled {
+				msg := commonFormat(qianxinResult, "QiAnXin")
+				err := sendHexQBot(msg)
+				if err != nil {
+					log.Printf("send [QiAnXin] to [HexQBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.ServerChan.Enabled {
+				title, msg := serverChanFormat(qianxinResult, "QiAnXin")
+				err := sendServerChan(title, msg)
+				if err != nil {
+					log.Printf("send [QiAnXin] to [ServerChan] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.FeishuBot.Enabled {
+				msg := commonFormat(qianxinResult, "QiAnXin")
+				err := sendFeishuBot(msg)
+				if err != nil {
+					log.Printf("send [QiAnXin] to [FeishuBot] error: %s\n", err.Error())
+				}
+			}
+
+			if cfg.DingBot.Enabled {
+				msg := commonFormat(qianxinResult, "QiAnXin")
+				err := sendDingBot(msg)
+				if err != nil {
+					log.Printf("send [QiAnXin] to [DingBot] error: %s\n", err.Error())
+				}
+			}
+
+			// TODO: other bot
+
+		}
+
+	}
 }
