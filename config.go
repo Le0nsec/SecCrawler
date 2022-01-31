@@ -80,7 +80,7 @@ type TttangStruct struct {
 }
 
 type QiAnXinStruct struct {
-	Enabled bool `yaml:"enablesd"`
+	Enabled bool `yaml:"enabled"`
 }
 
 // 全局Config
@@ -182,7 +182,7 @@ Anquanke:
 # 跳跳糖
 # http://tttang.com/
 Tttang:
-  enable: true
+  enabled: true
 
 # 奇安信攻防社区
 # https://forum.butian.net/community/all/newest

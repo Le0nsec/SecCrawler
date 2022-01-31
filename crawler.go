@@ -69,6 +69,9 @@ func getEdgeForum() ([][]string, error) {
 		fmt.Printf("%s\n\n", match[1:][0])
 		resultSlice = append(resultSlice, match[1:])
 	}
+	if len(resultSlice) == 0 {
+		return nil, errors.New("no records in the last 24 hours")
+	}
 	return resultSlice, nil
 }
 
