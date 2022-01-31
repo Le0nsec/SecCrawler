@@ -94,7 +94,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [Seebug Paper](https://paper.seebug.org/)
 - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
 - [x] [跳跳糖](https://tttang.com/)
-- [ ] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
+- [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
     
 支持的推送机器人列表：
 
@@ -145,16 +145,16 @@ WecomBot:
 # 飞书群机器人
 # https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
 FeishuBot:
-enabled: false
-key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-timeout: 2
+  enabled: false
+  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  timeout: 2
 
 # 钉钉群机器人
 # https://open.dingtalk.com/document/robots/custom-robot-access
 DingBot:
-enabled: false
-token: xxxxxxxxxxxxxxxxxxxxxx
-timeout: 2
+  enabled: false
+  token: xxxxxxxxxxxxxxxxxxxxxx
+  timeout: 2
 
 # HexQBot
 # https://github.com/Am473ur/HexQBot
