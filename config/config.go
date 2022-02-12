@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"fmt"
@@ -86,13 +86,8 @@ type QiAnXinStruct struct {
 // 全局Config
 var cfg *Config
 
-var siteDescriptionMap = map[string]string{
-	"EdgeForum":   "棱角社区攻防日报",
-	"XianZhi":     "先知安全技术社区",
-	"SeebugPaper": "SeebugPaper-安全技术精粹",
-	"Anquanke":    "安全客-安全资讯平台",
-	"Tttang":      "跳跳糖-安全与分享社区",
-	"QiAnXin":     "奇安信攻防社区",
+func GetGlobalConfig() *Config {
+	return cfg
 }
 
 func init() {
