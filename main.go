@@ -2,10 +2,8 @@ package main
 
 import (
 	"SecCrawler/bot"
-	_ "SecCrawler/bot"
 	"SecCrawler/config"
 	"SecCrawler/crawler"
-	_ "SecCrawler/crawler"
 	"SecCrawler/register"
 	"SecCrawler/utils"
 	"flag"
@@ -16,14 +14,22 @@ import (
 	"github.com/robfig/cron"
 )
 
-// var cfg = config.Cfg
+const banner = `
+  _____            _____                    _           
+ / ____|          / ____|                  | |          
+| (___   ___  ___| |     _ __ __ ___      _| | ___ _ __ 
+ \___ \ / _ \/ __| |    | '__/ _  \ \ /\ / / |/ _ \ '__|
+ ____) |  __/ (__| |____| | | (_| |\ V  V /| |  __/ |   
+|_____/ \___|\___|\_____|_|  \__,_| \_/\_/ |_|\___|_|   																									  
+`
 
 func init() {
+	fmt.Print(banner)
 	flag.BoolVar(&config.Test, "test", false, "stop after running once")
 	flag.BoolVar(&config.Version, "version", false, "print version info")
 	flag.BoolVar(&config.Help, "help", false, "print help info")
 	flag.BoolVar(&config.Generate, "init", false, "generate a config file")
-	flag.StringVar(&config.ConfigFile, "c", "./config.yml", "the config `file` to be used")
+	flag.StringVar(&config.ConfigFile, "c", "config.yml", "the config `file` to be used, or generate a config file with the specified name")
 	flag.Usage = usage
 }
 
