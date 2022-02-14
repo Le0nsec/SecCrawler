@@ -6,198 +6,119 @@ import (
 	"os"
 
 	"github.com/spf13/viper"
+	"gopkg.in/yaml.v2"
 )
 
-type Config struct {
-	Debug        bool   `yaml:"Debug" binding:"required"`
-	CronTime     uint8  `yaml:"CronTime" binding:"required"`
-	ChromeDriver string `yaml:"ChromeDriver"`
-
-	WecomBot   *WecomBotStruct   `yaml:"WecomBot"`
-	FeishuBot  *FeishuBotStruct  `yaml:"FeishuBot"`
-	DingBot    *DingBotStruct    `yaml:"DingBot"`
-	HexQBot    *HexQBotStruct    `yaml:"HexQBot"`
-	ServerChan *ServerChanStruct `yaml:"ServerChan"`
-
-	EdgeForum   *EdgeForumStruct   `yaml:"EdgeForum"`
-	XianZhi     *XianZhiStruct     `yaml:"XianZhi"`
-	SeebugPaper *SeebugPaperStruct `yaml:"SeebugPaper"`
-	Anquanke    *AnquankeStruct    `yaml:"Anquanke"`
-	Tttang      *TttangStruct      `yaml:"Tttang"`
-	QiAnXin     *QiAnXinStruct     `yaml:"QiAnXin"`
-}
-
-type WecomBotStruct struct {
-	Enabled bool   `yaml:"enabled"`
-	Key     string `yaml:"key"`
-	Timeout uint8  `yaml:"timeout"`
-}
-
-type FeishuBotStruct struct {
-	Enabled bool   `yaml:"enabled"`
-	Key     string `yaml:"key"`
-	Timeout uint8  `yaml:"timeout"`
-}
-
-type DingBotStruct struct {
-	Enabled bool   `yaml:"enabled"`
-	Token   string `yaml:"token"`
-	Timeout uint8  `yaml:"timeout"`
-}
-
-type HexQBotStruct struct {
-	Enabled bool   `yaml:"enabled"`
-	Api     string `yaml:"api"`
-	QQGroup uint64 `yaml:"qqgroup"`
-	Key     string `yaml:"key"`
-	Timeout uint8  `yaml:"timeout"`
-}
-
-type ServerChanStruct struct {
-	Enabled bool   `yaml:"enabled"`
-	SendKey string `yaml:"sendkey"`
-	Timeout uint8  `yaml:"timeout"`
-}
-
-type EdgeForumStruct struct {
-	Enabled bool `yaml:"enabled"`
-}
-
-type XianZhiStruct struct {
-	Enabled bool `yaml:"enabled"`
-}
-
-type SeebugPaperStruct struct {
-	Enabled bool `yaml:"enabled"`
-}
-
-type AnquankeStruct struct {
-	Enabled bool `yaml:"enabled"`
-}
-
-type TttangStruct struct {
-	Enabled bool `yaml:"enabled"`
-}
-
-type QiAnXinStruct struct {
-	Enabled bool `yaml:"enabled"`
-}
-
 // 全局Config
-var cfg *Config
+var Cfg *Config
 
-func GetGlobalConfig() *Config {
-	return cfg
+var (
+	Test       bool
+	Version    bool
+	Help       bool
+	Generate   bool
+	ConfigFile string
+
+	GITHUB     string = "https://github.com/Le0nsec/SecCrawler"
+	TAG        string = "dev"
+	GOVERSION  string
+	BUILD_TIME string
+)
+
+// func GetGlobalConfig() *Config {
+// 	return cfg
+// }
+
+func DefaultConfig() Config {
+	return Config{
+		CronTime:     11,
+		ChromeDriver: "./chromedriver/linux64",
+		Api: ApiStruct{
+			Enabled: false,
+			Debug:   false,
+			Host:    "127.0.0.1",
+			Port:    8080,
+			AuthKey: "auth_key_here",
+		},
+		Crawler: CrawlerStruct{
+			EdgeForum:   EdgeForumStruct{Enabled: false},
+			XianZhi:     XianZhiStruct{Enabled: false},
+			SeebugPaper: SeebugPaperStruct{Enabled: false},
+			Anquanke:    AnquankeStruct{Enabled: false},
+			Tttang:      TttangStruct{Enabled: false},
+			QiAnXin:     QiAnXinStruct{Enabled: false},
+		},
+		Bot: BotStruct{
+			WecomBot: WecomBotStruct{
+				Enabled: false,
+				Key:     "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+				Timeout: 2,
+			},
+			FeishuBot: FeishuBotStruct{
+				Enabled: false,
+				Key:     "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+				Timeout: 2,
+			},
+			DingBot: DingBotStruct{
+				Enabled: false,
+				Token:   "xxxxxxxxxxxxxxxxxxxx",
+				Timeout: 2,
+			},
+			HexQBot: HexQBotStruct{
+				Enabled: false,
+				Api:     "http://xxxxxx.com/send",
+				QQGroup: 000000000,
+				Key:     "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+				Timeout: 2,
+			},
+			ServerChan: ServerChanStruct{
+				Enabled: false,
+				SendKey: "xxxxxxxxxxxxxxxxxxxx",
+				Timeout: 2,
+			},
+		},
+	}
 }
 
-func init() {
+func configToYaml() string {
+	b, err := yaml.Marshal(DefaultConfig())
+	if err != nil {
+		log.Fatalf("unable to marshal config to yaml: %s", err.Error())
+	}
+	return string(b)
+}
+
+func ConfigInit() {
 	log.SetPrefix("[!] ")
 	viper.SetConfigType("yaml")
-	viper.SetConfigFile("./config.yml")
-	// 判断config文件是否存在，不存在则初始化
-	if _, err := os.Stat("./config.yml"); os.IsNotExist(err) {
-		fmt.Println("[*] config.yml does not exist!")
-		f, err := os.Create("./config.yml")
-		if err != nil {
-			log.Fatalf("create config file error: %s\n", err.Error())
+	viper.SetConfigFile(ConfigFile)
+	// 判断config文件是否存在
+	if _, err := os.Stat(ConfigFile); os.IsNotExist(err) {
+		if Generate {
+			f, err := os.Create(ConfigFile)
+			if err != nil {
+				log.Fatalf("create config file error: %s\n", err.Error())
+			}
+			defer f.Close()
+
+			_, err = f.WriteString(configToYaml())
+			if err != nil {
+				log.Fatalf("write config file error: %s\n", err.Error())
+			}
+			f.Sync()
+			fmt.Println("[*] The configuration file has been initialized.")
+			os.Exit(0)
+		} else {
+			fmt.Println("[!] The configuration file does not exist, please use `-init`")
+			os.Exit(0)
 		}
-		defer f.Close()
-		configString := `
-############### CronSetting ###############
-# 开启则一次性爬取后退出程序
-Debug: false
-# 设置每天整点爬取推送时间，范围 0 ~ 23（整数）
-CronTime: 11
-# 设置Selenium使用的ChromeDriver路径，支持相对路径或绝对路径（如果不爬取先知社区可以不用设置）
-ChromeDriver: ./chromedriver/linux64
-
-
-############### BotConfig ###############
-
-# 企业微信群机器人
-# https://work.weixin.qq.com/api/doc/90000/90136/91770
-WecomBot:
-  enabled: false
-  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  timeout: 2  # second
-
-# 飞书群机器人
-# https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
-FeishuBot:
-  enabled: false
-  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  timeout: 2
-
-# 钉钉群机器人
-# https://open.dingtalk.com/document/robots/custom-robot-access
-DingBot:
-  enabled: false
-  token: xxxxxxxxxxxxxxxxxxxxxx
-  timeout: 2
-
-# HexQBot
-# https://github.com/Am473ur/HexQBot
-HexQBot:
-  enabled: false
-  api: http://xxxxxx.com/send
-  qqgroup: 000000000
-  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  timeout: 2
-
-# Server酱
-# https://sct.ftqq.com/
-ServerChan:
-  enabled: false
-  sendkey: xxxxxxxxxxxxxxxxxxxxxx
-  timeout: 2
-
-
-############### SiteEnable ###############
-
-# 棱角社区
-# https://forum.ywhack.com/forum-59-1.html
-EdgeForum:
-  enabled: true
-
-# 先知安全技术社区
-# https://xz.aliyun.com/
-XianZhi:
-  enabled: true
-
-# SeebugPaper（知道创宇404实验室）
-# https://paper.seebug.org/
-SeebugPaper:
-  enabled: true
-
-# 安全客
-# https://www.anquanke.com/
-Anquanke:
-  enabled: true
-
-# 跳跳糖
-# http://tttang.com/
-Tttang:
-  enabled: true
-
-# 奇安信攻防社区
-# https://forum.butian.net/community/all/newest
-QiAnXin:
-  enabled: true
-`
-		_, err = f.WriteString(configString)
-		if err != nil {
-			log.Fatalf("write config file error: %s\n", err.Error())
-		}
-		f.Sync()
-		fmt.Println("[*] The configuration file has been initialized.")
-		os.Exit(0)
 	} else {
 		err := viper.ReadInConfig()
 		if err != nil {
 			log.Fatalf("read config file error: %s\n", err.Error())
 		}
 
-		err = viper.Unmarshal(&cfg)
+		err = viper.Unmarshal(&Cfg)
 		if err != nil {
 			log.Fatalf("unmarshal config error: %s\n", err.Error())
 		}

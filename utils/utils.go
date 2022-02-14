@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var cfg = config.GetGlobalConfig()
+var cfg = config.Cfg
 
 func CurrentTime() string {
 	time_zone := time.FixedZone("CST", 8*3600) // 8*3600 = 8h
@@ -23,7 +23,7 @@ func IsIn24Hours(t time.Time) bool {
 	now := time.Now().In(time_zone)
 	// 根据config生成每日整点时间
 	var hour int
-	if cfg.Debug {
+	if config.Test {
 		hour = now.Hour()
 	} else {
 		hour = int(cfg.CronTime)

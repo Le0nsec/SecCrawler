@@ -1,11 +1,14 @@
 package main
 
 import (
+	"SecCrawler/bot"
 	_ "SecCrawler/bot"
 	"SecCrawler/config"
+	"SecCrawler/crawler"
 	_ "SecCrawler/crawler"
 	"SecCrawler/register"
 	"SecCrawler/utils"
+	"flag"
 	"fmt"
 	"log"
 	"strings"
@@ -13,24 +16,56 @@ import (
 	"github.com/robfig/cron"
 )
 
-var cfg = config.GetGlobalConfig()
+// var cfg = config.Cfg
+
+func init() {
+	flag.BoolVar(&config.Test, "test", false, "stop after running once")
+	flag.BoolVar(&config.Version, "version", false, "print version info")
+	flag.BoolVar(&config.Help, "help", false, "print help info")
+	flag.BoolVar(&config.Generate, "init", false, "generate a config file")
+	flag.StringVar(&config.ConfigFile, "c", "./config.yml", "the config `file` to be used")
+	flag.Usage = usage
+}
+
+func usage() {
+	fmt.Printf("SecCrawler %s\n\nOptions:\n", config.TAG)
+	flag.PrintDefaults()
+}
 
 func main() {
-	if !cfg.Debug {
-		_cron := cron.New()
-		spec := fmt.Sprintf("0 0 %d * * ?", cfg.CronTime)
-		err := _cron.AddFunc(spec, start)
-		// err := _cron.AddFunc("0 */1 * * * ?", start) //每分钟
-		if err != nil {
-			log.Fatalf("add cron error: %s\n", err.Error())
-		}
+	flag.Parse()
 
-		_cron.Start()
-		defer _cron.Stop()
-		select {}
-	} else {
-		start()
+	if config.Help {
+		flag.Usage()
+		return
 	}
+
+	if config.Version {
+		fmt.Printf("Version: SecCrawler %s\nGithub: %s\nGo Version: %s\nBuild Time: %s\n", config.TAG, config.GITHUB, config.GOVERSION, config.BUILD_TIME)
+		return
+	}
+
+	config.ConfigInit()
+	bot.BotInit()
+	crawler.CrawlerInit()
+
+	if config.Test {
+		start()
+		return
+	}
+
+	_cron := cron.New()
+	spec := fmt.Sprintf("0 0 %d * * ?", config.Cfg.CronTime)
+	err := _cron.AddFunc(spec, start)
+	// err := _cron.AddFunc("0 */1 * * * ?", start) //每分钟
+	if err != nil {
+		log.Fatalf("add cron error: %s\n", err.Error())
+	}
+
+	_cron.Start()
+	defer _cron.Stop()
+	select {}
+
 }
 
 func start() {

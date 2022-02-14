@@ -1,6 +1,7 @@
 package bot
 
 import (
+	. "SecCrawler/config"
 	"SecCrawler/register"
 	"SecCrawler/utils"
 	"fmt"
@@ -29,11 +30,11 @@ func (bot FeishuBot) Send(crawlerResult [][]string, description string) error {
 	title := fmt.Sprintf("%s\\n%s\\n\\n", description, utils.CurrentTime())
 
 	client := &http.Client{
-		Timeout: time.Duration(cfg.WecomBot.Timeout) * time.Second,
+		Timeout: time.Duration(Cfg.Bot.FeishuBot.Timeout) * time.Second,
 	}
 
 	data := fmt.Sprintf(`{"msg_type":"text","content":{"text":"%s"}}`, title+msg)
-	req, err := http.NewRequest("POST", "https://open.feishu.cn/open-apis/bot/v2/hook/"+cfg.FeishuBot.Key, strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://open.feishu.cn/open-apis/bot/v2/hook/"+Cfg.Bot.FeishuBot.Key, strings.NewReader(data))
 	if err != nil {
 		return err
 	}

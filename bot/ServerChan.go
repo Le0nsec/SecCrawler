@@ -1,6 +1,7 @@
 package bot
 
 import (
+	. "SecCrawler/config"
 	"SecCrawler/register"
 	"fmt"
 	"io/ioutil"
@@ -28,12 +29,12 @@ func (bot ServerChan) Send(crawlerResult [][]string, description string) error {
 	}
 
 	client := &http.Client{
-		Timeout: time.Duration(cfg.ServerChan.Timeout) * time.Second,
+		Timeout: time.Duration(Cfg.Bot.ServerChan.Timeout) * time.Second,
 	}
 
 	data := fmt.Sprintf(`title=%s&desp=%s`, url.QueryEscape(description), url.QueryEscape(msg))
 
-	req, err := http.NewRequest("POST", "https://sctapi.ftqq.com/"+cfg.ServerChan.SendKey+".send", strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://sctapi.ftqq.com/"+Cfg.Bot.ServerChan.SendKey+".send", strings.NewReader(data))
 	if err != nil {
 		return err
 	}

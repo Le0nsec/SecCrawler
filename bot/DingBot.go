@@ -1,6 +1,7 @@
 package bot
 
 import (
+	. "SecCrawler/config"
 	"SecCrawler/register"
 	"SecCrawler/utils"
 	"fmt"
@@ -29,11 +30,11 @@ func (bot DingBot) Send(crawlerResult [][]string, description string) error {
 	title := fmt.Sprintf("%s\\n%s\\n\\n", description, utils.CurrentTime())
 
 	client := &http.Client{
-		Timeout: time.Duration(cfg.DingBot.Timeout) * time.Second,
+		Timeout: time.Duration(Cfg.Bot.DingBot.Timeout) * time.Second,
 	}
 
 	data := fmt.Sprintf(`{"msgtype": "text","text": {"content":"%s"}}`, title+msg)
-	req, err := http.NewRequest("POST", "https://oapi.dingtalk.com/robot/send?access_token="+cfg.DingBot.Token, strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://oapi.dingtalk.com/robot/send?access_token="+Cfg.Bot.DingBot.Token, strings.NewReader(data))
 	if err != nil {
 		return err
 	}

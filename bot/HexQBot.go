@@ -1,6 +1,7 @@
 package bot
 
 import (
+	. "SecCrawler/config"
 	"SecCrawler/register"
 	"SecCrawler/utils"
 	"fmt"
@@ -29,11 +30,11 @@ func (bot HexQBot) Send(crawlerResult [][]string, description string) error {
 	title := fmt.Sprintf("%s\\n%s\\n\\n", description, utils.CurrentTime())
 
 	client := &http.Client{
-		Timeout: time.Duration(cfg.HexQBot.Timeout) * time.Second,
+		Timeout: time.Duration(Cfg.Bot.HexQBot.Timeout) * time.Second,
 	}
 
-	data := fmt.Sprintf(`{"msg": "%s", "num": %d, "key": "%s"}`, title+msg, cfg.HexQBot.QQGroup, cfg.HexQBot.Key)
-	req, err := http.NewRequest("POST", cfg.HexQBot.Api, strings.NewReader(data))
+	data := fmt.Sprintf(`{"msg": "%s", "num": %d, "key": "%s"}`, title+msg, Cfg.Bot.HexQBot.QQGroup, Cfg.Bot.HexQBot.Key)
+	req, err := http.NewRequest("POST", Cfg.Bot.HexQBot.Api, strings.NewReader(data))
 	if err != nil {
 		return err
 	}

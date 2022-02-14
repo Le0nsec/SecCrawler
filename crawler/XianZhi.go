@@ -1,6 +1,7 @@
 package crawler
 
 import (
+	. "SecCrawler/config"
 	"SecCrawler/register"
 	"SecCrawler/utils"
 	"errors"
@@ -79,7 +80,7 @@ func fetchXianZhiBySelenium() (string, error) {
 	}
 
 	caps.AddChrome(chromeCaps)
-	_, err := selenium.NewChromeDriverService(cfg.ChromeDriver, 29515, opts...)
+	_, err := selenium.NewChromeDriverService(Cfg.ChromeDriver, 29515, opts...)
 	if err != nil {
 		return "", err
 	}

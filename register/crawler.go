@@ -22,3 +22,8 @@ func RegisterCrawler(crawler Crawler) {
 func GetCrawlerMap() map[string]Crawler {
 	return crawlerMap
 }
+
+func GetCrawler(name string) (crawler Crawler, ok bool) {
+	crawler, ok = crawlerMap[name]
+	return
+}

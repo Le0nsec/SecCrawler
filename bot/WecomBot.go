@@ -1,6 +1,7 @@
 package bot
 
 import (
+	. "SecCrawler/config"
 	"SecCrawler/register"
 	"SecCrawler/utils"
 	"fmt"
@@ -29,11 +30,11 @@ func (bot WecomBot) Send(crawlerResult [][]string, description string) error {
 	title := fmt.Sprintf("## %s\\n### %s\\n\\n\\n", description, utils.CurrentTime())
 
 	client := &http.Client{
-		Timeout: time.Duration(cfg.WecomBot.Timeout) * time.Second,
+		Timeout: time.Duration(Cfg.Bot.WecomBot.Timeout) * time.Second,
 	}
 
 	data := fmt.Sprintf(`{"msgtype": "markdown", "markdown": {"content": "%s"}}`, title+msg)
-	req, err := http.NewRequest("POST", "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="+cfg.WecomBot.Key, strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key="+Cfg.Bot.WecomBot.Key, strings.NewReader(data))
 	if err != nil {
 		return err
 	}

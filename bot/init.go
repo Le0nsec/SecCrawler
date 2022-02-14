@@ -1,26 +1,24 @@
 package bot
 
 import (
-	"SecCrawler/config"
+	. "SecCrawler/config"
 	"SecCrawler/register"
 )
 
-var cfg = config.GetGlobalConfig()
-
-func init() {
-	if cfg.DingBot.Enabled {
+func BotInit() {
+	if Cfg.Bot.DingBot.Enabled {
 		register.RegisterBot(&DingBot{})
 	}
-	if cfg.FeishuBot.Enabled {
+	if Cfg.Bot.FeishuBot.Enabled {
 		register.RegisterBot(&FeishuBot{})
 	}
-	if cfg.HexQBot.Enabled {
+	if Cfg.Bot.HexQBot.Enabled {
 		register.RegisterBot(&HexQBot{})
 	}
-	if cfg.ServerChan.Enabled {
+	if Cfg.Bot.ServerChan.Enabled {
 		register.RegisterBot(&ServerChan{})
 	}
-	if cfg.WecomBot.Enabled {
+	if Cfg.Bot.WecomBot.Enabled {
 		register.RegisterBot(&WecomBot{})
 	}
 

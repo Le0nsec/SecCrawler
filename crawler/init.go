@@ -1,29 +1,27 @@
 package crawler
 
 import (
-	"SecCrawler/config"
+	. "SecCrawler/config"
 	"SecCrawler/register"
 )
 
-var cfg = config.GetGlobalConfig()
-
-func init() {
-	if cfg.Anquanke.Enabled {
+func CrawlerInit() {
+	if Cfg.Crawler.Anquanke.Enabled {
 		register.RegisterCrawler(&Anquanke{})
 	}
-	if cfg.EdgeForum.Enabled {
+	if Cfg.Crawler.EdgeForum.Enabled {
 		register.RegisterCrawler(&EdgeForum{})
 	}
-	if cfg.QiAnXin.Enabled {
+	if Cfg.Crawler.QiAnXin.Enabled {
 		register.RegisterCrawler(&QiAnXin{})
 	}
-	if cfg.SeebugPaper.Enabled {
+	if Cfg.Crawler.SeebugPaper.Enabled {
 		register.RegisterCrawler(&SeebugPaper{})
 	}
-	if cfg.Tttang.Enabled {
+	if Cfg.Crawler.Tttang.Enabled {
 		register.RegisterCrawler(&Tttang{})
 	}
-	if cfg.XianZhi.Enabled {
+	if Cfg.Crawler.XianZhi.Enabled {
 		register.RegisterCrawler(&XianZhi{})
 	}
 }
