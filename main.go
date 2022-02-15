@@ -1,6 +1,7 @@
 package main
 
 import (
+	"SecCrawler/api"
 	"SecCrawler/bot"
 	"SecCrawler/config"
 	"SecCrawler/crawler"
@@ -11,7 +12,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/robfig/cron"
+	"github.com/gin-gonic/gin"
 )
 
 func init() {
@@ -51,17 +52,32 @@ func main() {
 		return
 	}
 
-	_cron := cron.New()
-	spec := fmt.Sprintf("0 0 %d * * ?", config.Cfg.CronTime)
-	err := _cron.AddFunc(spec, start)
-	// err := _cron.AddFunc("0 */1 * * * ?", start) //每分钟
-	if err != nil {
-		log.Fatalf("add cron error: %s\n", err.Error())
+	if config.Cfg.Api.Enabled {
+		if !config.Cfg.Api.Debug {
+			gin.SetMode(gin.ReleaseMode)
+		}
+
+		r := gin.Default()
+		api.RouterInit(r)
+		listened := fmt.Sprintf("%s:%d", config.Cfg.Api.Host, config.Cfg.Api.Port)
+		fmt.Printf("[+] API Server start at %s\n", listened)
+		err := r.Run(listened)
+		if err != nil {
+			log.Printf("failed to start: %s", err.Error())
+		}
 	}
 
-	_cron.Start()
-	defer _cron.Stop()
-	select {}
+	// _cron := cron.New()
+	// spec := fmt.Sprintf("0 0 %d * * ?", config.Cfg.CronTime)
+	// err := _cron.AddFunc(spec, start)
+	// // err := _cron.AddFunc("0 */1 * * * ?", start) //每分钟
+	// if err != nil {
+	// 	log.Fatalf("add cron error: %s\n", err.Error())
+	// }
+
+	// _cron.Start()
+	// defer _cron.Stop()
+	// select {}
 
 }
 

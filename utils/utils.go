@@ -3,10 +3,16 @@ package utils
 import (
 	"SecCrawler/config"
 	"fmt"
+	"log"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
-var cfg = config.Cfg
+const (
+	SITE_NOT_FOUND    = 4000
+	ARTICLE_NOT_FOUND = 4001
+)
 
 func CurrentTime() string {
 	time_zone := time.FixedZone("CST", 8*3600) // 8*3600 = 8h
@@ -26,7 +32,7 @@ func IsIn24Hours(t time.Time) bool {
 	if config.Test {
 		hour = now.Hour()
 	} else {
-		hour = int(cfg.CronTime)
+		hour = int(config.Cfg.CronTime)
 	}
 	cronTime := time.Date(now.Year(), now.Month(), now.Day(), hour, 0, 0, 0, time_zone)
 	subTime := cronTime.Sub(t)
@@ -36,31 +42,44 @@ func IsIn24Hours(t time.Time) bool {
 	return true
 }
 
-// wecomBotFormat 格式化消息为markdown格式。
-// func WecomBotFormat(crawlerResult [][]string, site string) (msg string) {
-// 	for _, i := range crawlerResult {
-// 		text := fmt.Sprintf("> %s\\n\\n[%s](%s)\\n\\n\\n", i[1], i[0], i[0])
-// 		msg += text
-// 	}
-// 	title := fmt.Sprintf("## %s\\n### %s\\n\\n\\n", config.SiteDescriptionMap[site], CurrentTime())
-// 	return title + msg
-// }
+type Resp struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
+}
 
-// commonFormat 格式化消息。
-// func CommonFormat(crawlerResult [][]string, site string) (msg string) {
-// 	for _, i := range crawlerResult {
-// 		text := fmt.Sprintf("%s\\n%s\\n\\n", i[1], i[0])
-// 		msg += text
-// 	}
-// 	title := fmt.Sprintf("%s\\n%s\\n\\n", config.SiteDescriptionMap[site], CurrentTime())
-// 	return title + msg
-// }
+func ErrorResp(c *gin.Context, code int, err error) {
+	log.Printf("Resp error: [%s]", err.Error())
+	c.JSON(200, Resp{
+		Code: code,
+		Msg:  err.Error(),
+		Data: nil,
+	})
+	c.Abort()
+}
 
-// serverChanFormat 格式化消息。
-// func ServerChanFormat(crawlerResult [][]string, site string) (title, msg string) {
-// 	for _, i := range crawlerResult {
-// 		text := fmt.Sprintf("%s\n[%s](%s)\n\n", i[1], i[0], i[0])
-// 		msg += text
-// 	}
-// 	return config.SiteDescriptionMap[site], msg
-// }
+func ErrorStrResp(c *gin.Context, code int, str string) {
+	log.Printf("Resp error: [%s]", str)
+	c.JSON(200, Resp{
+		Code: code,
+		Msg:  str,
+		Data: nil,
+	})
+	c.Abort()
+}
+
+func SuccessResp(c *gin.Context, data ...interface{}) {
+	if len(data) == 0 {
+		c.JSON(200, Resp{
+			Code: 200,
+			Msg:  "success",
+			Data: nil,
+		})
+		return
+	}
+	c.JSON(200, Resp{
+		Code: 200,
+		Msg:  "success",
+		Data: data[0],
+	})
+}
