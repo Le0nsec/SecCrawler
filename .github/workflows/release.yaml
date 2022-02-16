@@ -34,8 +34,10 @@ jobs:
     - name: Set env
       run: |
         echo 111
-        cd /home/runner/work/SecCrawler/SecCrawler
+        cd /github/home
         ls -al
+        go version
+        
         git describe --tags
         export SEC_TAG=$(git describe --tags)
 
