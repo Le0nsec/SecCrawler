@@ -31,6 +31,7 @@ jobs:
         goarch: ${{ matrix.goarch }}
         goversion: 1.16
         overwrite: true
-        build_flags: -trimpath -tags=jsoniter
-        ldflags: -s -w -X "SecCrawler/config.TAG=$(git describe --tags)" -X "SecCrawler/config.GOVERSION=$(go version | sed 's/go version //')" -X "SecCrawler/config.BUILD_TIME=$(date +'%F %T %z')"
+        build_command: go build  -tags=jsoniter -trimpath -ldflags="-w -s -X 'SecCrawler/config.TAG=$(git describe --tags)' -X 'SecCrawler/config.GOVERSION=$(go version|sed 's/go version //')' -X 'SecCrawler/config.BUILD_TIME=$(date +'%F %T %z')'"
+        #build_flags: -trimpath -tags=jsoniter
+        #ldflags: -s -w -X "SecCrawler/config.TAG=$(git describe --tags)" -X "SecCrawler/config.GOVERSION=$(go version | sed 's/go version //')" -X "SecCrawler/config.BUILD_TIME=$(date +'%F %T %z')"
         asset_name: SecCrawler_${{ matrix.goos }}_${{ matrix.goarch }}_${{ steps.short_tag.outputs.VERSION }}
