@@ -39,7 +39,7 @@ func main() {
 	}
 
 	if config.Version {
-		fmt.Printf("Version: SecCrawler %s\nGithub: %s\nGo Version: %s\nBuild Time: %s\n", config.TAG, config.GITHUB, config.GOVERSION, config.BUILD_TIME)
+		fmt.Printf("Version: SecCrawler %s\nGithub: %s\nGo Version: %s\n", config.TAG, config.GITHUB, config.GOVERSION)
 		return
 	}
 
