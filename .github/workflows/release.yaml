@@ -19,8 +19,8 @@ jobs:
           - goarch: arm64
             goos: windows
     steps:
-    - name: Get Tag Version
-      id: get_version
+    - name: Short tag Version
+      id: short_tag
       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
     - uses: actions/checkout@v2
@@ -31,6 +31,7 @@ jobs:
         goarch: ${{ matrix.goarch }}
         goversion: 1.16
         overwrite: true
-        build_flags: -trimpath
+        # build_command: go build
+        build_flags: -trimpath -tags=jsoniter
         ldflags: -s -w
-        asset_name: SecCrawler_${{ matrix.goos }}_${{ matrix.goarch }}_${{ steps.get_version.outputs.VERSION }}
+        asset_name: SecCrawler_${{ matrix.goos }}_${{ matrix.goarch }}_${{ steps.short_tag.outputs.VERSION }}
