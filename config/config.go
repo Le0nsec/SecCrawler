@@ -40,8 +40,11 @@ var (
 
 func DefaultConfig() Config {
 	return Config{
-		CronTime:     11,
 		ChromeDriver: "./chromedriver/linux64",
+		Cron: CronStruct{
+			Enabled: false,
+			Time:    11,
+		},
 		Api: ApiStruct{
 			Enabled: false,
 			Debug:   false,

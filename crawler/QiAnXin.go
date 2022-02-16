@@ -57,7 +57,7 @@ func (crawler QiAnXin) Get() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("%s\n[*] [QiAnXin] crawler result:\n%s\n\n", strings.Repeat("-", 30), utils.CurrentTime())
+	fmt.Printf("[*] [QiAnXin] crawler result:\n%s\n\n", utils.CurrentTime())
 	for _, match := range result {
 		time_zone := time.FixedZone("CST", 8*3600)
 		t, err := time.ParseInLocation("2006-01-02 15:04:05", match[1:][2], time_zone)

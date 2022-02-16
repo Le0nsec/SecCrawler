@@ -1,12 +1,17 @@
 package config
 
 type Config struct {
-	CronTime     uint8  `yaml:"CronTime" binding:"required"`
 	ChromeDriver string `yaml:"ChromeDriver"`
 
+	Cron    CronStruct    `yaml:"Cron"`
 	Api     ApiStruct     `yaml:"Api"`
 	Crawler CrawlerStruct `yaml:"Crawler"`
 	Bot     BotStruct     `yaml:"Bot"`
+}
+
+type CronStruct struct {
+	Enabled bool  `yaml:"enabled"`
+	Time    uint8 `yaml:"time"`
 }
 
 type ApiStruct struct {

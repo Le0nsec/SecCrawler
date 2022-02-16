@@ -71,7 +71,7 @@ func (crawler EdgeForum) Get() ([][]string, error) {
 	// fmt.Println(result)
 
 	var resultSlice [][]string
-	fmt.Printf("%s\n[*] [EdgeForum] crawler result:\n%s\n\n", strings.Repeat("-", 30), utils.CurrentTime())
+	fmt.Printf("[*] [EdgeForum] crawler result:\n%s\n\n", utils.CurrentTime())
 	for _, match := range result {
 		fmt.Printf("%s\n", match[1:][1])
 		fmt.Printf("%s\n\n", match[1:][0])

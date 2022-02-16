@@ -97,7 +97,7 @@ func (crawler Anquanke) Get() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("%s\n[*] [Anquanke] crawler result:\n%s\n\n", strings.Repeat("-", 30), utils.CurrentTime())
+	fmt.Printf("[*] [Anquanke] crawler result:\n%s\n\n", utils.CurrentTime())
 	for _, match := range result {
 		match[1:][0] = "https://www.anquanke.com" + match[1:][0]
 		time_zone := time.FixedZone("CST", 8*3600)

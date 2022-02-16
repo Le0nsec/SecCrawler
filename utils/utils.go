@@ -12,6 +12,7 @@ import (
 const (
 	SITE_NOT_FOUND    = 4000
 	ARTICLE_NOT_FOUND = 4001
+	INVALID_AUTH_KEY  = 4002
 )
 
 func CurrentTime() string {
@@ -32,7 +33,7 @@ func IsIn24Hours(t time.Time) bool {
 	if config.Test {
 		hour = now.Hour()
 	} else {
-		hour = int(config.Cfg.CronTime)
+		hour = int(config.Cfg.Cron.Time)
 	}
 	cronTime := time.Date(now.Year(), now.Month(), now.Day(), hour, 0, 0, 0, time_zone)
 	subTime := cronTime.Sub(t)

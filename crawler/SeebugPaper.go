@@ -57,7 +57,7 @@ func (crawler SeebugPaper) Get() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("%s\n[*] [SeebugPaper] crawler result:\n%s\n\n", strings.Repeat("-", 30), utils.CurrentTime())
+	fmt.Printf("[*] [SeebugPaper] crawler result:\n%s\n\n", utils.CurrentTime())
 	for _, match := range result {
 		utc, _ := time.LoadLocation("UTC")
 		t, err := time.ParseInLocation(time.RFC1123Z, match[1:][2], utc)

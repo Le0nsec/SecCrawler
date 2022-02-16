@@ -34,7 +34,7 @@ func (crawler XianZhi) Get() ([][]string, error) {
 	result := re.FindAllStringSubmatch(strings.TrimSpace(text), -1)
 
 	var resultSlice [][]string
-	fmt.Printf("%s\n[*] [XianZhi] crawler result:\n%s\n\n", strings.Repeat("-", 30), utils.CurrentTime())
+	fmt.Printf("[*] [XianZhi] crawler result:\n%s\n\n", utils.CurrentTime())
 	for _, match := range result {
 		t, err := time.Parse(time.RFC3339, match[1:][0])
 		if err != nil {

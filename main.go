@@ -10,9 +10,9 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/robfig/cron"
 )
 
 func init() {
@@ -51,6 +51,18 @@ func main() {
 		start()
 		return
 	}
+	if config.Cfg.Cron.Enabled {
+		_cron := cron.New()
+		spec := fmt.Sprintf("0 0 %d * * ?", config.Cfg.Cron.Time)
+		err := _cron.AddFunc(spec, start)
+		// err := _cron.AddFunc("0 */1 * * * ?", start) //每分钟
+		if err != nil {
+			log.Fatalf("add cron error: %s\n", err.Error())
+		}
+
+		_cron.Start()
+		defer _cron.Stop()
+	}
 
 	if config.Cfg.Api.Enabled {
 		if !config.Cfg.Api.Debug {
@@ -65,24 +77,14 @@ func main() {
 		if err != nil {
 			log.Printf("failed to start: %s", err.Error())
 		}
+	} else if config.Cfg.Cron.Enabled {
+		select {}
 	}
-
-	// _cron := cron.New()
-	// spec := fmt.Sprintf("0 0 %d * * ?", config.Cfg.CronTime)
-	// err := _cron.AddFunc(spec, start)
-	// // err := _cron.AddFunc("0 */1 * * * ?", start) //每分钟
-	// if err != nil {
-	// 	log.Fatalf("add cron error: %s\n", err.Error())
-	// }
-
-	// _cron.Start()
-	// defer _cron.Stop()
-	// select {}
 
 }
 
 func start() {
-	fmt.Printf("%s\n[♥︎] crawler start at %s\n%s\n\n", strings.Repeat("-", 47), utils.CurrentTime(), strings.Repeat("-", 47))
+	fmt.Printf("\n[♥] crawler start at %s\n", utils.CurrentTime())
 
 	for crawlerName, crawler := range register.GetCrawlerMap() {
 		crawlerResult, err := crawler.Get()
