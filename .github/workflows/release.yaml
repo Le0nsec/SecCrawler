@@ -35,6 +35,9 @@ jobs:
       run: |
         echo 111
         cd /home/runner/work/SecCrawler
+        ls -al
+        cd /home/runner/work/_temp
+        ls -al
         git describe --tags
         export SEC_TAG=$(git describe --tags)
 
