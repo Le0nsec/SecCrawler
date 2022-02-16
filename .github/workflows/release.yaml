@@ -35,7 +35,7 @@ jobs:
       id: echo_env
       env:
         GIT_ENV: "sssss"
-      run: echo "$(git config user.name)_$(GIT_ENV)"
+      run: echo $(git config user.name)
 
     - uses: actions/checkout@v2
     - uses: wangyoucao577/go-release-action@v1.22
