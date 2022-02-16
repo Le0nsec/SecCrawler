@@ -232,8 +232,9 @@ Bot:
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/66706544/146009777-d64c1ae8-03b6-4da3-82ff-a4a47b17dcf9.png" />
-  <img src="https://gitee.com/leonsec/images/raw/master/image-20220216185646719.png" />
+  <img src="https://user-images.githubusercontent.com/66706544/154257622-6d8bb37e-e312-48b8-a4f3-96b145a32555.png" />
 </p>
+
 
 ## Contributing
 
