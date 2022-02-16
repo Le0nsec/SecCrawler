@@ -20,16 +20,16 @@ func RouterInit(r *gin.Engine) {
 }
 
 func setCors(r *gin.Engine) {
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	config.AllowHeaders = append(config.AllowHeaders, "Authorization")
-	r.Use(cors.New(config))
+	conf := cors.DefaultConfig()
+	conf.AllowAllOrigins = true
+	conf.AllowHeaders = append(conf.AllowHeaders, "Authorization")
+	r.Use(cors.New(conf))
 }
 
 func auth(c *gin.Context) {
 	key := c.GetHeader("Authorization")
 
-	if key != config.Cfg.Api.AuthKey {
+	if key != config.Cfg.Api.Auth {
 		utils.ErrorStrResp(c, utils.INVALID_AUTH_KEY, "Invalid auth key")
 		return
 	}

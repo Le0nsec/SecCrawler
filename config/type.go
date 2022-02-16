@@ -19,7 +19,7 @@ type ApiStruct struct {
 	Debug   bool   `yaml:"debug"`
 	Host    string `yaml:"host"`
 	Port    uint16 `yaml:"port"`
-	AuthKey string `yaml:"auth_key"`
+	Auth    string `yaml:"auth"`
 }
 
 type CrawlerStruct struct {

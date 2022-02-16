@@ -50,7 +50,7 @@ func DefaultConfig() Config {
 			Debug:   false,
 			Host:    "127.0.0.1",
 			Port:    8080,
-			AuthKey: "auth_key_here",
+			Auth:    "auth_key_here",
 		},
 		Crawler: CrawlerStruct{
 			EdgeForum:   EdgeForumStruct{Enabled: false},
