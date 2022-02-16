@@ -27,16 +27,14 @@ jobs:
       run: echo ::set-output name=TAG::"$(git config user.name)"
     - name: Get go Version
       id: go_version
-      run: echo ::set-output name=GO_VERSION::"$(/usr/local/go/bin/go version | sed 's/go version //')"
+      run: echo ::set-output name=GO_VERSION::"$(go version | sed 's/go version //')"
     - name: Get time
       id: time
       run: echo ::set-output name=TIME::$(date +'%F %T %z')
     - name: Set env
       run: |
         echo 111
-        cd /home/runner/work/SecCrawler
-        ls -al
-        cd /home/runner/work/_temp
+        cd /home/runner/work/SecCrawler/SecCrawler
         ls -al
         git describe --tags
         export SEC_TAG=$(git describe --tags)
