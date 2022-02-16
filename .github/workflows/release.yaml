@@ -31,11 +31,12 @@ jobs:
     - name: Get time
       id: time
       run: echo ::set-output name=TIME::$(date +'%F %T %z')
-    - name: Get env
-      id: echo_env
-      env:
-        GIT_ENV: "sssss"
-      run: echo $(git config user.name)
+    - name: Set env
+      run: |
+        echo 111
+        cd /home/runner/work/SecCrawler
+        git describe --tags
+        export SEC_TAG=$(git describe --tags)
 
     - uses: actions/checkout@v2
     - uses: wangyoucao577/go-release-action@v1.22
