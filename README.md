@@ -48,11 +48,39 @@ SecCrawler
 
 SecCrawler 是一个跨平台的方便安全研究人员获取每日安全日报的爬虫和机器人推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区，持续更新中。
 
+程序使用yml格式的配置文件，第一次使用时请使用`-init`参数在当前文件夹生成默认配置文件，在配置文件中设置爬取的网站和推送机器人相关配置，目前包括在内的网站和推送的机器人在[Features](#features)中可以查看，可以设置每日推送的整点时间以及是否开启API。
 
-程序使用yml格式的配置文件，第一次运行时会在当前文件夹自动生成`config.yml`配置文件模板，在配置文件中设置爬取的网站和推送机器人相关配置，目前包括在内的网站和推送的机器人在[Features](#features)中可以查看，可以设置每日推送的整点时间。
+```text
+
+  _____            _____                    _           
+ / ____|          / ____|                  | |          
+| (___   ___  ___| |     _ __ __ ___      _| | ___ _ __ 
+ \___ \ / _ \/ __| |    | '__/ _  \ \ /\ / / |/ _ \ '__|
+ ____) |  __/ (__| |____| | | (_| |\ V  V /| |  __/ |   
+|_____/ \___|\___|\_____|_|  \__,_| \_/\_/ |_|\___|_|   							  
+SecCrawler dev
+
+Options:
+  -c file
+    	the config file to be used, or generate a config file with the specified name with -init (default "config.yml")
+  -help
+    	print help info
+  -init
+    	generate a config file
+  -test
+    	stop after running once
+  -version
+    	print version info
+
+```
+
+- 使用`-h/-help`查看详细命令：
 
 
-程序使用定时任务每天根据设置好的时间整点自动运行，编辑好相关配置后后台运行即可，示例运行命令：
+- 使用`-c`指定使用的配置文件，或者配合`-init`生成指定文件名的配置文件
+- 使用`-test`参数执行一次程序后退出
+
+如果开启了定时任务，程序使用定时任务每天根据设置好的时间整点自动运行，编辑好相关配置后后台运行即可，示例运行命令：
 
 
 ```sh
@@ -95,7 +123,8 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
 - [x] [跳跳糖](https://tttang.com/)
 - [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
-    
+  
+
 支持的推送机器人列表：
 
 - [x] [企业微信群机器人](https://work.weixin.qq.com/api/doc/90000/90136/91770)
@@ -121,99 +150,90 @@ $ go build .
 
 
 ## Config
-`config.yml`配置文件模板：
+`config.yml`配置文件模板注释：
 
 ```yml
-############### CronSetting ###############
-# 开启则一次性爬取后退出程序
-Debug: false
-# 设置每天整点爬取推送时间，范围 0 ~ 23（整数）
-CronTime: 11
 # 设置Selenium使用的ChromeDriver路径，支持相对路径或绝对路径（如果不爬取先知社区可以不用设置）
 ChromeDriver: ./chromedriver/linux64
-
-
-############### BotConfig ###############
-
-# 企业微信群机器人
-# https://work.weixin.qq.com/api/doc/90000/90136/91770
-WecomBot:
+Cron:
   enabled: false
-  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  timeout: 2  # second
+  time: 11 # 设置定时任务每天整点爬取推送时间，范围 0 ~ 23（整数）
 
-# 飞书群机器人
-# https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
-FeishuBot:
+Api:
   enabled: false
-  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  timeout: 2
+  debug: false
+  host: 127.0.0.1
+  port: 8080
+  auth: auth_key_here # 请求api需要带上Authorization头
 
-# 钉钉群机器人
-# https://open.dingtalk.com/document/robots/custom-robot-access
-DingBot:
-  enabled: false
-  token: xxxxxxxxxxxxxxxxxxxxxx
-  timeout: 2
+Crawler:
+  # 棱角社区
+  # https://forum.ywhack.com/forum-59-1.html
+  EdgeForum:
+    enabled: false
+  # 先知安全技术社区
+  # https://xz.aliyun.com/
+  XianZhi:
+    enabled: false
+  # SeebugPaper（知道创宇404实验室）
+  # https://paper.seebug.org/
+  SeebugPaper:
+    enabled: false
+  # 安全客
+  # https://www.anquanke.com/
+  Anquanke:
+    enabled: false
+  # 跳跳糖
+  # http://tttang.com/
+  Tttang:
+    enabled: false
+  # 奇安信攻防社区
+  # https://forum.butian.net/community/all/newest
+  QiAnXin:
+    enabled: false
 
-# HexQBot
-# https://github.com/Am473ur/HexQBot
-HexQBot:
-  enabled: false
-  api: http://xxxxxx.com/send
-  qqgroup: 000000000
-  key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  timeout: 2
+Bot:
+  # 企业微信群机器人
+  # https://work.weixin.qq.com/api/doc/90000/90136/91770
+  WecomBot:
+    enabled: false
+    key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    timeout: 2
+  # 飞书群机器人
+  # https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN
+  FeishuBot:
+    enabled: false
+    key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    timeout: 2
+  # 钉钉群机器人
+  # https://open.dingtalk.com/document/robots/custom-robot-access
+  DingBot:
+    enabled: false
+    token: xxxxxxxxxxxxxxxxxxxx
+    timeout: 2
+  # HexQBot
+  # https://github.com/Am473ur/HexQBot
+  HexQBot:
+    enabled: false
+    api: http://xxxxxx.com/send
+    qqgroup: 0
+    key: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    timeout: 2
+  # Server酱
+  # https://sct.ftqq.com/
+  ServerChan:
+    enabled: false
+    sendkey: xxxxxxxxxxxxxxxxxxxx
+    timeout: 2
 
-# Server酱
-# https://sct.ftqq.com/
-ServerChan:
-  enabled: false
-  sendkey: xxxxxxxxxxxxxxxxxxxxxx
-  timeout: 2
-
-
-############### SiteEnable ###############
-
-# 棱角社区
-# https://forum.ywhack.com/forum-59-1.html
-EdgeForum:
-  enabled: true
-
-# 先知安全技术社区
-# https://xz.aliyun.com/
-XianZhi:
-  enabled: true
-
-# SeebugPaper（知道创宇404实验室）
-# https://paper.seebug.org/
-SeebugPaper:
-  enabled: true
-
-# 安全客
-# https://www.anquanke.com/
-Anquanke:
-  enabled: true
-
-# 跳跳糖
-# http://tttang.com/
-Tttang:
-  enabled: true
-
-# 奇安信攻防社区
-# https://forum.butian.net/community/all/newest
-QiAnXin:
-  enabled: true
 ```
 
 ## Demo
 
-
 <p align="center">
   <img src="https://user-images.githubusercontent.com/66706544/146009777-d64c1ae8-03b6-4da3-82ff-a4a47b17dcf9.png" />
-  <img src="https://user-images.githubusercontent.com/66706544/146007857-3ec0babb-5f6e-4e66-bc33-cf8f14833c32.png" />
+  <img src="https://gitee.com/leonsec/images/raw/master/image-20220216185646719.png" />
 </p>
-
 
 ## Contributing
 
