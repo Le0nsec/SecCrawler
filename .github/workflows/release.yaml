@@ -34,7 +34,7 @@ jobs:
     - name: Set env
       run: |
         echo 111
-        cd /github/home
+        cd /home
         ls -al
         go version
         
