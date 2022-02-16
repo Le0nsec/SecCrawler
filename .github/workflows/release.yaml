@@ -27,10 +27,15 @@ jobs:
       run: echo ::set-output name=TAG::"$(git config user.name)"
     - name: Get go Version
       id: go_version
-      run: echo ::set-output name=GO_VERSION::"$(go version | sed 's/go version //')"
+      run: echo ::set-output name=GO_VERSION::"$(/usr/local/go/bin/go version | sed 's/go version //')"
     - name: Get time
       id: time
       run: echo ::set-output name=TIME::$(date +'%F %T %z')
+    - name: Get env
+      id: echo_env
+      env:
+        GIT_ENV: "sssss"
+      run: echo "$(git config user.name)_$(GIT_ENV)"
 
     - uses: actions/checkout@v2
     - uses: wangyoucao577/go-release-action@v1.22
