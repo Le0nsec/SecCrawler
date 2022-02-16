@@ -22,24 +22,6 @@ jobs:
     - name: Short tag Version
       id: short_tag
       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-    - name: Long tag Version
-      id: long_tag
-      run: echo ::set-output name=TAG::"$(git config user.name)"
-    - name: Get go Version
-      id: go_version
-      run: echo ::set-output name=GO_VERSION::"$(go version | sed 's/go version //')"
-    - name: Get time
-      id: time
-      run: echo ::set-output name=TIME::$(date +'%F %T %z')
-    - name: Set env
-      run: |
-        echo 111
-        cd /home
-        ls -al
-        go version
-        
-        git describe --tags
-        export SEC_TAG=$(git describe --tags)
 
     - uses: actions/checkout@v2
     - uses: wangyoucao577/go-release-action@v1.22
@@ -50,5 +32,5 @@ jobs:
         goversion: 1.16
         overwrite: true
         build_flags: -trimpath -tags=jsoniter
-        ldflags: -s -w -X "SecCrawler/config.TAG=${{ steps.long_tag.outputs.TAG }}" -X "SecCrawler/config.GOVERSION=${{ steps.go_version.outputs.GO_VERSION }}" -X "SecCrawler/config.BUILD_TIME=${{ steps.time.outputs.TIME }}"
+        ldflags: -s -w -X "SecCrawler/config.TAG=$(git describe --tags)" -X "SecCrawler/config.GOVERSION=$(go version | sed 's/go version //')" -X "SecCrawler/config.BUILD_TIME=$(date +'%F %T %z')"
         asset_name: SecCrawler_${{ matrix.goos }}_${{ matrix.goarch }}_${{ steps.short_tag.outputs.VERSION }}
