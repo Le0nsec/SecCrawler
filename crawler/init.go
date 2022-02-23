@@ -24,4 +24,7 @@ func CrawlerInit() {
 	if Cfg.Crawler.XianZhi.Enabled {
 		register.RegisterCrawler(&XianZhi{})
 	}
+	if Cfg.Crawler.DongJian.Enabled {
+		register.RegisterCrawler(&DongJian{})
+	}
 }

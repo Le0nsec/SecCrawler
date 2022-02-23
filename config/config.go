@@ -28,9 +28,9 @@ var (
 	Generate   bool
 	ConfigFile string
 
-	GITHUB     string = "https://github.com/Le0nsec/SecCrawler"
-	TAG        string = "v2.0"
-	GOVERSION  string = "go1.16.7"
+	GITHUB    string = "https://github.com/Le0nsec/SecCrawler"
+	TAG       string = "v2.0"
+	GOVERSION string = "go1.16.7"
 )
 
 // func GetGlobalConfig() *Config {
@@ -58,6 +58,7 @@ func DefaultConfig() Config {
 			Anquanke:    AnquankeStruct{Enabled: false},
 			Tttang:      TttangStruct{Enabled: false},
 			QiAnXin:     QiAnXinStruct{Enabled: false},
+			DongJian:    DongJianStruct{Enabled: false},
 		},
 		Bot: BotStruct{
 			WecomBot: WecomBotStruct{

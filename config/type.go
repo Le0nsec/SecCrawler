@@ -29,6 +29,7 @@ type CrawlerStruct struct {
 	Anquanke    AnquankeStruct    `yaml:"Anquanke"`
 	Tttang      TttangStruct      `yaml:"Tttang"`
 	QiAnXin     QiAnXinStruct     `yaml:"QiAnXin"`
+	DongJian    DongJianStruct    `yaml:"DongJian"`
 }
 
 type BotStruct struct {
@@ -92,5 +93,9 @@ type TttangStruct struct {
 }
 
 type QiAnXinStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+
+type DongJianStruct struct {
 	Enabled bool `yaml:"enabled"`
 }
