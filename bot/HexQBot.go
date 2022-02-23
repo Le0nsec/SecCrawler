@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
-	"time"
 )
 
 type HexQBot struct{}
@@ -29,9 +28,7 @@ func (bot HexQBot) Send(crawlerResult [][]string, description string) error {
 	}
 	title := fmt.Sprintf("%s\\n%s\\n\\n", description, utils.CurrentTime())
 
-	client := &http.Client{
-		Timeout: time.Duration(Cfg.Bot.HexQBot.Timeout) * time.Second,
-	}
+	client := utils.BotClient(Cfg.Bot.HexQBot.Timeout)
 
 	data := fmt.Sprintf(`{"msg": "%s", "num": %d, "key": "%s"}`, title+msg, Cfg.Bot.HexQBot.QQGroup, Cfg.Bot.HexQBot.Key)
 	req, err := http.NewRequest("POST", Cfg.Bot.HexQBot.Api, strings.NewReader(data))

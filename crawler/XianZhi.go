@@ -1,6 +1,7 @@
 package crawler
 
 import (
+	"SecCrawler/config"
 	. "SecCrawler/config"
 	"SecCrawler/register"
 	"SecCrawler/utils"
@@ -69,26 +70,41 @@ func fetchXianZhiBySelenium() (string, error) {
 		"profile.managed_default_content_settings.images": 2,
 	}
 
-	chromeCaps := chrome.Capabilities{
-		Prefs: imagCaps,
-		Path:  "",
-		Args: []string{
+	// 设置代理
+	proxyArgs := fmt.Sprintf("--proxy-server=%s", config.Cfg.Proxy.ProxyUrl)
+	var args []string
+	if config.Cfg.Proxy.CrawlerProxyEnabled {
+		args = []string{
 			"--headless",
 			"--no-sandbox",
 			"--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36",
-		},
+			proxyArgs,
+		}
+	} else {
+		args = []string{
+			"--headless",
+			"--no-sandbox",
+			"--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36",
+		}
+	}
+	chromeCaps := chrome.Capabilities{
+		Prefs: imagCaps,
+		Path:  "",
+		Args:  args,
 	}
 
 	caps.AddChrome(chromeCaps)
-	_, err := selenium.NewChromeDriverService(Cfg.ChromeDriver, 29515, opts...)
+	service, err := selenium.NewChromeDriverService(Cfg.ChromeDriver, 29515, opts...)
 	if err != nil {
 		return "", err
 	}
+	defer service.Stop()
 
 	webDriver, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", 29515))
 	if err != nil {
 		return "", err
 	}
+	defer webDriver.Quit()
 
 	// webDriver.AddCookie(&selenium.Cookie{
 	// 	Name:  "defaultJumpDomain",
@@ -107,5 +123,7 @@ func fetchXianZhiBySelenium() (string, error) {
 	if err != nil {
 		return "", err
 	}
+
+	time.Sleep(3 * time.Second)
 	return text, nil
 }

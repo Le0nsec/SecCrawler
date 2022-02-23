@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
-	"time"
 )
 
 type FeishuBot struct{}
@@ -29,9 +28,7 @@ func (bot FeishuBot) Send(crawlerResult [][]string, description string) error {
 	}
 	title := fmt.Sprintf("%s\\n%s\\n\\n", description, utils.CurrentTime())
 
-	client := &http.Client{
-		Timeout: time.Duration(Cfg.Bot.FeishuBot.Timeout) * time.Second,
-	}
+	client := utils.BotClient(Cfg.Bot.FeishuBot.Timeout)
 
 	data := fmt.Sprintf(`{"msg_type":"text","content":{"text":"%s"}}`, title+msg)
 	req, err := http.NewRequest("POST", "https://open.feishu.cn/open-apis/bot/v2/hook/"+Cfg.Bot.FeishuBot.Key, strings.NewReader(data))

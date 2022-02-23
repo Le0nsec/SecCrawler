@@ -23,9 +23,7 @@ func (crawler DongJian) Config() register.CrawlerConfig {
 
 // Get 获取洞见微信聚合前24小时内文章。
 func (crawler DongJian) Get() ([][]string, error) {
-	client := &http.Client{
-		Timeout: time.Duration(4) * time.Second,
-	}
+	client := utils.CrawlerClient()
 	req, err := http.NewRequest("GET", "http://wechat.doonsec.com/rss.xml", nil)
 	if err != nil {
 		return nil, err

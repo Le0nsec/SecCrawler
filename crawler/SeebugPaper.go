@@ -23,9 +23,8 @@ func (crawler SeebugPaper) Config() register.CrawlerConfig {
 
 // Get 获取Paper Seebug（知道创宇）前24小时内文章。
 func (crawler SeebugPaper) Get() ([][]string, error) {
-	client := &http.Client{
-		Timeout: time.Duration(4) * time.Second,
-	}
+	client := utils.CrawlerClient()
+
 	req, err := http.NewRequest("GET", "https://paper.seebug.org/rss/", nil)
 	if err != nil {
 		return nil, err

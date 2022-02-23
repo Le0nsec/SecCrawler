@@ -23,9 +23,8 @@ func (crawler Tttang) Config() register.CrawlerConfig {
 
 // Get 获取跳跳糖前24小时内文章。
 func (crawler Tttang) Get() ([][]string, error) {
-	client := &http.Client{
-		Timeout: time.Duration(4) * time.Second,
-	}
+	client := utils.CrawlerClient()
+
 	req, err := http.NewRequest("GET", "http://tttang.com/rss.xml", nil)
 	if err != nil {
 		return nil, err

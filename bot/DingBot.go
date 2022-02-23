@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
-	"time"
 )
 
 type DingBot struct{}
@@ -29,9 +28,7 @@ func (bot DingBot) Send(crawlerResult [][]string, description string) error {
 	}
 	title := fmt.Sprintf("%s\\n%s\\n\\n", description, utils.CurrentTime())
 
-	client := &http.Client{
-		Timeout: time.Duration(Cfg.Bot.DingBot.Timeout) * time.Second,
-	}
+	client := utils.BotClient(Cfg.Bot.DingBot.Timeout)
 
 	data := fmt.Sprintf(`{"msgtype": "text","text": {"content":"%s"}}`, title+msg)
 	req, err := http.NewRequest("POST", "https://oapi.dingtalk.com/robot/send?access_token="+Cfg.Bot.DingBot.Token, strings.NewReader(data))

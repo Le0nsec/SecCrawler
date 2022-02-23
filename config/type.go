@@ -3,6 +3,7 @@ package config
 type Config struct {
 	ChromeDriver string `yaml:"ChromeDriver"`
 
+	Proxy   ProxyStruct   `yaml:"Proxy"`
 	Cron    CronStruct    `yaml:"Cron"`
 	Api     ApiStruct     `yaml:"Api"`
 	Crawler CrawlerStruct `yaml:"Crawler"`
@@ -12,6 +13,12 @@ type Config struct {
 type CronStruct struct {
 	Enabled bool  `yaml:"enabled"`
 	Time    uint8 `yaml:"time"`
+}
+
+type ProxyStruct struct {
+	ProxyUrl            string `yaml:"ProxyUrl"`
+	CrawlerProxyEnabled bool   `yaml:"CrawlerProxyEnabled"`
+	BotProxyEnabled     bool   `yaml:"BotProxyEnabled"`
 }
 
 type ApiStruct struct {

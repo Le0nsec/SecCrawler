@@ -3,12 +3,12 @@ package bot
 import (
 	. "SecCrawler/config"
 	"SecCrawler/register"
+	"SecCrawler/utils"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"time"
 )
 
 type ServerChan struct{}
@@ -28,9 +28,7 @@ func (bot ServerChan) Send(crawlerResult [][]string, description string) error {
 		msg += text
 	}
 
-	client := &http.Client{
-		Timeout: time.Duration(Cfg.Bot.ServerChan.Timeout) * time.Second,
-	}
+	client := utils.BotClient(Cfg.Bot.ServerChan.Timeout)
 
 	data := fmt.Sprintf(`title=%s&desp=%s`, url.QueryEscape(description), url.QueryEscape(msg))
 

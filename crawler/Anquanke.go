@@ -23,9 +23,8 @@ func (crawler Anquanke) Config() register.CrawlerConfig {
 
 // Get 获取安全客前24小时内文章。
 func (crawler Anquanke) Get() ([][]string, error) {
-	client := &http.Client{
-		Timeout: time.Duration(4) * time.Second,
-	}
+	client := utils.CrawlerClient()
+
 	req, err := http.NewRequest("GET", "https://www.anquanke.com/knowledge", nil)
 	if err != nil {
 		return nil, err

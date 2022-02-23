@@ -40,6 +40,11 @@ var (
 func DefaultConfig() Config {
 	return Config{
 		ChromeDriver: "./chromedriver/linux64",
+		Proxy: ProxyStruct{
+			ProxyUrl:            "http://127.0.0.1:7890",
+			CrawlerProxyEnabled: false,
+			BotProxyEnabled:     false,
+		},
 		Cron: CronStruct{
 			Enabled: false,
 			Time:    11,

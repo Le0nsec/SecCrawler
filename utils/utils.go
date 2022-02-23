@@ -3,7 +3,8 @@ package utils
 import (
 	"SecCrawler/config"
 	"fmt"
-	"log"
+	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -43,6 +44,39 @@ func IsIn24Hours(t time.Time) bool {
 	return true
 }
 
+func proxyClient(timeout uint8) *http.Client {
+	proxy := func(_ *http.Request) (*url.URL, error) {
+		return url.Parse(config.Cfg.Proxy.ProxyUrl)
+	}
+
+	transport := &http.Transport{Proxy: proxy}
+	client := &http.Client{
+		Transport: transport,
+		Timeout:   time.Duration(timeout) * time.Second,
+	}
+	return client
+}
+
+func CrawlerClient() *http.Client {
+	if config.Cfg.Proxy.CrawlerProxyEnabled {
+		return proxyClient(4)
+	}
+	client := &http.Client{
+		Timeout: time.Duration(4) * time.Second,
+	}
+	return client
+}
+
+func BotClient(timeout uint8) *http.Client {
+	if config.Cfg.Proxy.BotProxyEnabled {
+		return proxyClient(timeout)
+	}
+	client := &http.Client{
+		Timeout: time.Duration(timeout) * time.Second,
+	}
+	return client
+}
+
 type Resp struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg"`
@@ -50,7 +84,7 @@ type Resp struct {
 }
 
 func ErrorResp(c *gin.Context, code int, err error) {
-	log.Printf("Resp error: [%s]", err.Error())
+	// log.Printf("Resp error: [%s]", err.Error())
 	c.JSON(200, Resp{
 		Code: code,
 		Msg:  err.Error(),
@@ -60,7 +94,7 @@ func ErrorResp(c *gin.Context, code int, err error) {
 }
 
 func ErrorStrResp(c *gin.Context, code int, str string) {
-	log.Printf("Resp error: [%s]", str)
+	// log.Printf("Resp error: [%s]", str)
 	c.JSON(200, Resp{
 		Code: code,
 		Msg:  str,
