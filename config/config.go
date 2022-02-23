@@ -78,7 +78,7 @@ func DefaultConfig() Config {
 			},
 			DingBot: DingBotStruct{
 				Enabled: false,
-				Token:   "xxxxxxxxxxxxxxxxxxxx",
+				Token:   "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 				Timeout: 2,
 			},
 			HexQBot: HexQBotStruct{
@@ -90,7 +90,12 @@ func DefaultConfig() Config {
 			},
 			ServerChan: ServerChanStruct{
 				Enabled: false,
-				SendKey: "xxxxxxxxxxxxxxxxxxxx",
+				SendKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+				Timeout: 2,
+			},
+			WgpSecBot: WgpSecBotStruct{
+				Enabled: false,
+				Key:     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 				Timeout: 2,
 			},
 		},

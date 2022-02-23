@@ -21,5 +21,8 @@ func BotInit() {
 	if Cfg.Bot.WecomBot.Enabled {
 		register.RegisterBot(&WecomBot{})
 	}
+	if Cfg.Bot.WgpSecBot.Enabled {
+		register.RegisterBot(&WgpSecBot{})
+	}
 
 }

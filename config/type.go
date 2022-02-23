@@ -45,6 +45,7 @@ type BotStruct struct {
 	DingBot    DingBotStruct    `yaml:"DingBot"`
 	HexQBot    HexQBotStruct    `yaml:"HexQBot"`
 	ServerChan ServerChanStruct `yaml:"ServerChan"`
+	WgpSecBot  WgpSecBotStruct  `yaml:"WgpSecBot"`
 }
 
 type WecomBotStruct struct {
@@ -76,6 +77,12 @@ type HexQBotStruct struct {
 type ServerChanStruct struct {
 	Enabled bool   `yaml:"enabled"`
 	SendKey string `yaml:"sendkey"`
+	Timeout uint8  `yaml:"timeout"`
+}
+
+type WgpSecBotStruct struct {
+	Enabled bool   `yaml:"enabled"`
+	Key     string `yaml:"key"`
 	Timeout uint8  `yaml:"timeout"`
 }
 
