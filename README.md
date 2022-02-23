@@ -123,6 +123,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
 - [x] [跳跳糖](https://tttang.com/)
 - [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
+- [x] [洞见微信聚合](http://wechat.doonsec.com/)
   
 
 支持的推送机器人列表：
@@ -132,6 +133,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [Server酱](https://sct.ftqq.com/)
 - [x] [飞书群机器人](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN)
 - [x] [钉钉群机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
+- [x] [WgpSecBot](https://bot.wgpsec.org)
 - [ ] [pushplus](http://pushplus.hxtrip.com/)
 
 ## Install
@@ -155,6 +157,12 @@ $ go build .
 ```yml
 # 设置Selenium使用的ChromeDriver路径，支持相对路径或绝对路径（如果不爬取先知社区可以不用设置）
 ChromeDriver: ./chromedriver/linux64
+
+Proxy:
+  ProxyUrl: http://127.0.0.1:7890
+  CrawlerProxyEnabled: false # 开启爬虫代理
+  BotProxyEnabled: false # 开启请求机器人代理
+
 Cron:
   enabled: false
   time: 11 # 设置定时任务每天整点爬取推送时间，范围 0 ~ 23（整数）
@@ -191,6 +199,10 @@ Crawler:
   # https://forum.butian.net/community/all/newest
   QiAnXin:
     enabled: false
+  # 洞见微信聚合
+  # http://wechat.doonsec.com/
+  DongJian:
+    enabled: false
 
 Bot:
   # 企业微信群机器人
@@ -224,6 +236,12 @@ Bot:
   ServerChan:
     enabled: false
     sendkey: xxxxxxxxxxxxxxxxxxxx
+    timeout: 2
+  # WgpSecBot
+  # https://bot.wgpsec.org/
+  WgpSecBot:
+    enabled: false
+    key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     timeout: 2
 
 ```
