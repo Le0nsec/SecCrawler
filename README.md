@@ -257,7 +257,10 @@ Bot:
 ## Contributing
 
 
-如果您有高质量的安全社区网站希望被爬取，或者想推荐被广泛使用的推送机器人，欢迎联系我`leonsec[at]h4ck.fun`或提交[issue](https://github.com/Le0nsec/SecCrawler/issues)和[PR](https://github.com/Le0nsec/SecCrawler/pulls)。
+如果您有高质量的安全社区网站希望被爬取，或者想推荐被广泛使用的推送机器人，欢迎联系我微信和邮箱：`leonsec[at]h4ck.fun`或提交[issue](https://github.com/Le0nsec/SecCrawler/issues)和[PR](https://github.com/Le0nsec/SecCrawler/pulls)。
+
+![24FAA89366BE0A81D8178D1FFC3B15ED](https://user-images.githubusercontent.com/66706544/155312764-6baef289-7490-43f7-a64f-48b576ab6675.jpg)
+
 
 
 
