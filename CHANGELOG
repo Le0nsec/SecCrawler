@@ -1,0 +1,60 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+
+
+## [v2.1] - 2022-02-23
+### Added
+- 新增全局代理
+- 新增洞见微信聚合
+- 新增WgpSecBot
+
+
+## [v2.0] - 2022-02-16
+### Added
+- API模块
+### Changed
+- 重构了部分代码
+
+
+## [v1.4] - 2022-01-31
+### Added
+- 跳跳糖社区
+- 奇安信攻防社区
+
+
+## [v1.3] - 2022-01-19
+### Added
+- Debug测试模式
+### Changed
+- HexQBot的API接口
+- 优化了部分代码
+
+
+## [v1.2] - 2021-12-21
+### Added
+- 钉钉群机器人推送和相关配置文件
+### Fixed
+- 爬取安全客的一个小bug
+
+
+## [v1.1] - 2021-12-16
+### Added
+- 飞书机器人推送和相关配置
+
+
+## [v1.0] - 2021-12-14
+### Added
+- 先知安全社区
+- 安全客 (安全知识专区)
+- Seebug Paper
+- 棱角安全社区
+- 企业微信群机器人
+- HexQBot (QQ群机器人 自建)
+- Server酱
+
