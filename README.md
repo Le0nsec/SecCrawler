@@ -6,7 +6,7 @@ SecCrawler
 ![SecCrawler](https://socialify.git.ci/Le0nsec/SecCrawler/image?font=Inter&language=1&logo=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F66706544&owner=1&pattern=Floating%20Cogs&theme=Dark)
 
 <h4 align="center">
-一个方便安全研究人员获取每日安全日报的爬虫和推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区，持续更新中。
+一个方便安全研究人员获取每日安全日报的爬虫和推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区、洞见微信聚合，持续更新中。
 </h4>
 
 <p align="center">
@@ -46,7 +46,7 @@ SecCrawler
 
 ## Introduction
 
-SecCrawler 是一个跨平台的方便安全研究人员获取每日安全日报的爬虫和机器人推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区，持续更新中。
+SecCrawler 是一个跨平台的方便安全研究人员获取每日安全日报的爬虫和机器人推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区、洞见微信聚合，机器人推送范围包括企业微信机器人、飞书机器人、钉钉机器人、Server酱、HexQBot（QQ群机器人）、WgpSecBot（微信机器人），持续更新中。
 
 程序使用yml格式的配置文件，第一次使用时请使用`-init`参数在当前文件夹生成默认配置文件，在配置文件中设置爬取的网站和推送机器人相关配置，目前包括在内的网站和推送的机器人在[Features](#features)中可以查看，可以设置每日推送的整点时间以及是否开启API。
 
