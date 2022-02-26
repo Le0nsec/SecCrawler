@@ -33,7 +33,7 @@ func (bot WgpSecBot) Send(crawlerResult [][]string, description string) error {
 
 	data := fmt.Sprintf(`txt=%s`, url.QueryEscape(title+msg))
 
-	req, err := http.NewRequest("POST", "https://bot.wgpsec.org/push/"+Cfg.Bot.WgpSecBot.Key, strings.NewReader(data))
+	req, err := http.NewRequest("POST", "https://api.bot.wgpsec.org/push/"+Cfg.Bot.WgpSecBot.Key, strings.NewReader(data))
 	if err != nil {
 		return err
 	}
