@@ -5,11 +5,10 @@ import (
 	"SecCrawler/utils"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"net/http"
-	"regexp"
-	"strings"
 	"time"
+
+	"github.com/mmcdole/gofeed"
 )
 
 type Tttang struct{}
@@ -45,21 +44,18 @@ func (crawler Tttang) Get() ([][]string, error) {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	fp := gofeed.NewParser()
+	feed, err := fp.Parse(resp.Body)
 	if err != nil {
 		return nil, err
 	}
 
-	bodyString := string(body)
-
-	re := regexp.MustCompile(`<item><title>([\w\W]*?)</title><link>([\w\W]*?)</link><description>[\w\W]*?</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">[\w\W]*?</dc:creator><pubDate>([\w\W]*?)</pubDate><guid>[\w\W]*?</guid></item>`)
-	result := re.FindAllStringSubmatch(strings.TrimSpace(bodyString), -1)
-
 	var resultSlice [][]string
 	fmt.Printf("[*] [Tttang] crawler result:\n%s\n\n", utils.CurrentTime())
-	for _, match := range result {
+
+	for _, item := range feed.Items {
 		time_zone := time.FixedZone("CST", 8*3600)
-		t, err := time.ParseInLocation(time.RFC1123Z, match[1:][2], time_zone)
+		t, err := time.ParseInLocation(time.RFC1123Z, item.Published, time_zone)
 		if err != nil {
 			return nil, err
 		}
@@ -68,21 +64,15 @@ func (crawler Tttang) Get() ([][]string, error) {
 			// 默认时间顺序是从近到远
 			break
 		}
-
-		// 去除title中的换行符
-		re, _ = regexp.Compile(`\s{1,}`)
-		match[1:][0] = re.ReplaceAllString(match[1:][0], "")
-
 		fmt.Println(t.In(time_zone).Format("2006/01/02 15:04:05"))
-		fmt.Println(match[1:][0])
-		fmt.Printf("%s\n\n", match[1:][1])
+		fmt.Println(item.Title)
+		fmt.Printf("%s\n\n", item.Link)
 
-		resultSlice = append(resultSlice, match[1:][0:2])
-		// slice中title和url调换位置，以符合统一的format
-		for _, item := range resultSlice {
-			item[0], item[1] = item[1], item[0]
-		}
+		var s []string
+		s = append(s, item.Link, item.Title)
+		resultSlice = append(resultSlice, s)
 	}
+
 	if len(resultSlice) == 0 {
 		return nil, errors.New("no records in the last 24 hours")
 	}

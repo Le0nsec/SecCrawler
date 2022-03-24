@@ -29,8 +29,8 @@ var (
 	ConfigFile string
 
 	GITHUB    string = "https://github.com/Le0nsec/SecCrawler"
-	TAG       string = "v2.1"
-	GOVERSION string = "go1.16.7"
+	TAG       string = "v2.2"
+	GOVERSION string = "go1.17.8"
 )
 
 // func GetGlobalConfig() *Config {
