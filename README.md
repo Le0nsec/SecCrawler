@@ -144,6 +144,16 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [跳跳糖](https://tttang.com/)
 - [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
 - [x] ~~[洞见微信聚合](http://wechat.doonsec.com/)~~ 暂时注释，有需要可自行编译
+- [x] 实验室
+  - [ ] [Noah Lab](http://noahblog.360.cn/)
+  - [ ] [360 核心安全技术博客](https://blogs.360.net/)
+  - [ ] [绿盟科技技术博客](http://blog.nsfocus.net/)
+  - [ ] [腾讯安全玄武实验室](https://xlab.tencent.com/)
+  - [ ] [天融信阿尔法实验室](http://blog.topsec.com.cn)
+  - [ ] [360 Netlab](https://blog.netlab.360.com/)
+  - [ ] [斗象能力中心](https://blog.riskivy.com/)
+  - [ ] [腾讯安全响应中心](https://security.tencent.com/index.php/blog)
+  - [ ] [南京邮电大学小绿草信息安全实验室](https://ctf.njupt.edu.cn/)
   
 
 支持的推送机器人列表：
