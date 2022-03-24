@@ -36,6 +36,10 @@ SecCrawler
 ## Table of Contents
 
 - [Introduction](#introduction)
+   - [Usage](#usage) 
+   - [API](#api) 
+   - [先知社区相关配置说明](#先知社区相关配置说明) 
+   - [ChromeDriver](#chromedriver) 
 - [Features](#features)
 - [Install](#install)
 - [Config](#config)
@@ -112,7 +116,7 @@ SecCrawler提供了Web API，配合其他工具可以主动调用API进行爬取
 
 - 配置文件中`XianZhi.UseChromeDriver`设置为true：使用 Selenium 调用浏览器渲染，需要用户自行下载对应版本的`ChromeDriver`和`Chrome`，并且在配置文件中指定`ChromeDriver`的路径
 
-- `XianZhi.UseChromeDriver`设置为false：需要用户设置`XianZhi.CustomRSSURL`为无反爬措施的先知社区RSS镜像站地址，如https://xianzhi2rss.xlab.app/feed.xml（笔者不保证无害，这里只做示例，请自行判断是否使用）
+- `XianZhi.UseChromeDriver`设置为false：需要用户设置`XianZhi.CustomRSSURL`为无反爬措施的先知社区RSS镜像站地址，如https://xianzhi2rss.xlab.app/feed.xml （笔者不保证无害，这里只做示例，请自行判断是否使用）
 
 ### ChromeDriver
 
