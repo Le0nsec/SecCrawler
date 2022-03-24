@@ -36,7 +36,7 @@ type CrawlerStruct struct {
 	Anquanke    AnquankeStruct    `yaml:"Anquanke"`
 	Tttang      TttangStruct      `yaml:"Tttang"`
 	QiAnXin     QiAnXinStruct     `yaml:"QiAnXin"`
-	DongJian    DongJianStruct    `yaml:"DongJian"`
+	// DongJian    DongJianStruct    `yaml:"DongJian"`
 }
 
 type BotStruct struct {

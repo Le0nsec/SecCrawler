@@ -24,7 +24,8 @@ func CrawlerInit() {
 	if Cfg.Crawler.XianZhi.Enabled {
 		register.RegisterCrawler(&XianZhi{})
 	}
-	if Cfg.Crawler.DongJian.Enabled {
-		register.RegisterCrawler(&DongJian{})
-	}
+	// 暂时删除洞见微信聚合，优化推送体验
+	// if Cfg.Crawler.DongJian.Enabled {
+	// 	register.RegisterCrawler(&DongJian{})
+	// }
 }

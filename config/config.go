@@ -63,7 +63,7 @@ func DefaultConfig() Config {
 			Anquanke:    AnquankeStruct{Enabled: false},
 			Tttang:      TttangStruct{Enabled: false},
 			QiAnXin:     QiAnXinStruct{Enabled: false},
-			DongJian:    DongJianStruct{Enabled: false},
+			// DongJian:    DongJianStruct{Enabled: false},
 		},
 		Bot: BotStruct{
 			WecomBot: WecomBotStruct{
