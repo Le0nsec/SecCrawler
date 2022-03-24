@@ -143,7 +143,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
 - [x] [跳跳糖](https://tttang.com/)
 - [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
-- ~~[x] [洞见微信聚合](http://wechat.doonsec.com/)~~ 暂时注释，有需要可自行编译
+- [x] ~~[洞见微信聚合](http://wechat.doonsec.com/)~~ 暂时注释，有需要可自行编译
   
 
 支持的推送机器人列表：

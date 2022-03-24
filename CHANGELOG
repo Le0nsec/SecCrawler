@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 优化: 使用gofeed解析rss
 - 洞见聚合url改为推荐分类的url，并且暂时限制推送文章为10篇，等有合适的短链接或者筛选方法再完善
 - 爬取先知社区增加了可选功能
+- 优化：暂时注释洞见微信聚合，优化推送体验
 
 
 ## [v2.1] - 2022-02-23
