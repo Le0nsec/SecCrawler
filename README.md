@@ -50,7 +50,7 @@ SecCrawler
 
 ## Introduction
 
-SecCrawler 是一个跨平台的方便安全研究人员获取每日安全日报的爬虫和机器人推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区、洞见微信聚合，机器人推送范围包括企业微信机器人、飞书机器人、钉钉机器人、Server酱、HexQBot（QQ群机器人）、WgpSecBot（微信机器人），持续更新中。
+SecCrawler 是一个跨平台的方便安全研究人员获取每日安全日报的爬虫和机器人推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区，机器人推送范围包括企业微信机器人、飞书机器人、钉钉机器人、Server酱、HexQBot（QQ群机器人）、WgpSecBot（微信机器人），持续更新中。
 
 ### Usage
 
@@ -143,7 +143,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [棱角安全社区](https://forum.ywhack.com/forum-59-1.html)
 - [x] [跳跳糖](https://tttang.com/)
 - [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
-- [x] [洞见微信聚合](http://wechat.doonsec.com/)
+- ~~[x] [洞见微信聚合](http://wechat.doonsec.com/)~~ 暂时注释，有需要可自行编译
   
 
 支持的推送机器人列表：
