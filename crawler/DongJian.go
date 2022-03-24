@@ -70,6 +70,10 @@ func (crawler DongJian) Get() ([][]string, error) {
 		var s []string
 		s = append(s, item.Link, item.Title)
 		resultSlice = append(resultSlice, s)
+		// 暂时限制为10篇文章
+		if len(resultSlice) >= 10 {
+			break
+		}
 	}
 
 	if len(resultSlice) == 0 {
