@@ -58,7 +58,7 @@ func DefaultConfig() Config {
 		},
 		Crawler: CrawlerStruct{
 			EdgeForum:   EdgeForumStruct{Enabled: false},
-			XianZhi:     XianZhiStruct{Enabled: false},
+			XianZhi:     XianZhiStruct{Enabled: false, UseChromeDriver: true, CustomRSSURL: ""},
 			SeebugPaper: SeebugPaperStruct{Enabled: false},
 			Anquanke:    AnquankeStruct{Enabled: false},
 			Tttang:      TttangStruct{Enabled: false},

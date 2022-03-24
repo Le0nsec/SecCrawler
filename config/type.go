@@ -91,7 +91,9 @@ type EdgeForumStruct struct {
 }
 
 type XianZhiStruct struct {
-	Enabled bool `yaml:"enabled"`
+	Enabled         bool   `yaml:"enabled"`
+	UseChromeDriver bool   `yaml:"UseChromeDriver"`
+	CustomRSSURL    string `yaml:"CustomRSSURL"`
 }
 
 type SeebugPaperStruct struct {
