@@ -48,6 +48,8 @@ SecCrawler
 
 SecCrawler 是一个跨平台的方便安全研究人员获取每日安全日报的爬虫和机器人推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区、洞见微信聚合，机器人推送范围包括企业微信机器人、飞书机器人、钉钉机器人、Server酱、HexQBot（QQ群机器人）、WgpSecBot（微信机器人），持续更新中。
 
+### Usage
+
 程序使用yml格式的配置文件，第一次使用时请使用`-init`参数在当前文件夹生成默认配置文件，在配置文件中设置爬取的网站和推送机器人相关配置，目前包括在内的网站和推送的机器人在[Features](#features)中可以查看，可以设置每日推送的整点时间以及是否开启API。
 
 ```text
@@ -74,25 +76,45 @@ Options:
 
 ```
 
-- 使用`-h/-help`查看详细命令：
-- 使用`-c`指定使用的配置文件，或者配合`-init`生成指定文件名的配置文件
+- 使用`-h/-help`查看详细命令
+- 使用`-c`指定使用的配置文件，或者在生成配置文件时配合`-init`生成指定文件名的配置文件
 - 使用`-test`参数执行一次程序后退出
-- [API文档](https://www.apifox.cn/apidoc/shared-b613c4fc-56a6-4724-831f-4c1ac5547ab5)
-- 注意请求API需要带上Authorization头
+- 使用`-version`输出详细版本信息
 
-如果开启了定时任务，程序使用定时任务每天根据设置好的时间整点自动运行，编辑好相关配置后后台运行即可，示例运行命令：
-
+如果开启了定时任务（Cron），程序使用定时任务每天根据设置好的时间整点自动运行，编辑好相关配置后后台运行即可，示例运行命令：
 
 ```sh
 $ nohup ./SecCrawler >> run.log 2>&1 &
-# 或者使用screen
+```
+
+或者使用screen
+
+```sh
 $ screen ./SecCrawler
 $ ctrl a+d / control a+d # 回到主会话
 ```
 
 
-注：由于在爬取先知安全社区时程序使用了 Selenium，用户需要手动下载`ChromeDriver`和`Chrome`浏览器。
+程序旨在帮助安全研究者自动化获取每日更新的安全文章，适用于每日安全日报推送，爬取的安全社区网站范围和支持推送的机器人持续增加中，欢迎在[issues](https://github.com/Le0nsec/SecCrawler/issues)中提供宝贵的建议。
 
+
+:rocket: 目前 SecCrawler 已在MacOS Apple silicon 、Ubuntu 20.04运行测试通过。
+### API
+
+SecCrawler提供了Web API，配合其他工具可以主动调用API进行爬取或推送。
+
+- [API文档](https://www.apifox.cn/apidoc/shared-b613c4fc-56a6-4724-831f-4c1ac5547ab5)
+- 注意请求API需要带上Authorization头，在配置文件中配置`auth`值
+
+### 先知社区相关配置说明
+
+先知安全社区设置有反爬措施，官方RSS需要使用 Selenium 调用浏览器进行渲染，SecCrawler 提供了两种方法：
+
+- 配置文件中`XianZhi.UseChromeDriver`设置为true：使用 Selenium 调用浏览器渲染，需要用户自行下载对应版本的`ChromeDriver`和`Chrome`，并且在配置文件中指定`ChromeDriver`的路径
+
+- `XianZhi.UseChromeDriver`设置为false：需要用户设置`XianZhi.CustomRSSURL`为无反爬措施的先知社区RSS镜像站地址，如https://xianzhi2rss.xlab.app/feed.xml（笔者不保证无害，这里只做示例，请自行判断是否使用）
+
+### ChromeDriver
 
 ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 
@@ -106,12 +128,6 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 > Chrome浏览器可以访问`chrome://version/`查看版本
 
 > 命令行可以使用`google-chrome-stable --version`查看版本
-
-
-程序旨在帮助安全研究者自动化获取每日更新的安全文章，适用于每日安全日报推送，爬取的安全社区网站范围和支持推送的机器人持续增加中，欢迎在[issues](https://github.com/Le0nsec/SecCrawler/issues)中提供宝贵的建议。
-
-
-:rocket: 目前 SecCrawler 已在MacOS Apple silicon 、Ubuntu 20.04运行测试通过。
 
 ## Features
 
@@ -159,17 +175,17 @@ $ go build .
 ChromeDriver: ./chromedriver/linux64
 
 Proxy:
-  ProxyUrl: http://127.0.0.1:7890
-  CrawlerProxyEnabled: false # 开启爬虫代理
-  BotProxyEnabled: false # 开启请求机器人代理
+  ProxyUrl: http://127.0.0.1:7890 # 代理地址，支持http/https/socks协议
+  CrawlerProxyEnabled: false # 是否开启爬虫代理
+  BotProxyEnabled: false # 是否开启请求机器人代理
 
 Cron:
-  enabled: false
+  enabled: false # 是否开启定时任务，开启后每天按照指定的时间爬取并推送
   time: 11 # 设置定时任务每天整点爬取推送时间，范围 0 ~ 23（整数）
 
 Api:
-  enabled: false
-  debug: false
+  enabled: false # 是否开启API
+  debug: false # 是否开启Gin-DEBUG模式
   host: 127.0.0.1
   port: 8080
   auth: auth_key_here # 请求api需要带上Authorization头
@@ -183,6 +199,8 @@ Crawler:
   # https://xz.aliyun.com/
   XianZhi:
     enabled: false
+    UseChromeDriver: true # 是否使用selenium调用浏览器爬取，设置为true需要指定ChromeDriver地址，为false需要指定没有反爬措施的自定义网址CustomRSSURL
+    CustomRSSURL: ""
   # SeebugPaper（知道创宇404实验室）
   # https://paper.seebug.org/
   SeebugPaper:
