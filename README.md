@@ -125,11 +125,11 @@ WantedBy=multi-user.target
 
 保存后执行`systemctl daemon-reload`，现在你就可以使用以下命令来管理程序了：
 
-- 启动: systemctl start alist
-- 关闭: systemctl stop alist
-- 自启: systemctl enable alist
-- 状态: systemctl status alist
-- 重启: systemctl restart alist
+- 启动: systemctl start SecCrawler
+- 关闭: systemctl stop SecCrawler
+- 自启: systemctl enable SecCrawler
+- 状态: systemctl status SecCrawler
+- 重启: systemctl restart SecCrawler
 
 
 
