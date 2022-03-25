@@ -1,4 +1,4 @@
-package crawler
+package lab
 
 import (
 	"SecCrawler/register"
@@ -11,20 +11,20 @@ import (
 	"github.com/mmcdole/gofeed"
 )
 
-type SeebugPaper struct{}
+type TSRCBlog struct{}
 
-func (crawler SeebugPaper) Config() register.CrawlerConfig {
+func (crawler TSRCBlog) Config() register.CrawlerConfig {
 	return register.CrawlerConfig{
-		Name:        "SeebugPaper",
-		Description: "SeebugPaper-安全技术精粹",
+		Name:        "Lab.TSRCBlog",
+		Description: "腾讯安全应急响应中心",
 	}
 }
 
-// Get 获取Paper Seebug（知道创宇）前24小时内文章。
-func (crawler SeebugPaper) Get() ([][]string, error) {
+// Get 获取 TSRCBlog 前24小时内文章。
+func (crawler TSRCBlog) Get() ([][]string, error) {
 	client := utils.CrawlerClient()
 
-	req, err := http.NewRequest("GET", "https://paper.seebug.org/rss/", nil)
+	req, err := http.NewRequest("GET", "https://security.tencent.com/index.php/feed/blog/0", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -51,17 +51,16 @@ func (crawler SeebugPaper) Get() ([][]string, error) {
 	}
 
 	var resultSlice [][]string
-	fmt.Printf("[*] [SeebugPaper] crawler result:\n%s\n\n", utils.CurrentTime())
+	fmt.Printf("[*] [TSRCBlog] crawler result:\n%s\n\n", utils.CurrentTime())
 
 	for _, item := range feed.Items {
-		t, err := time.Parse(time.RFC1123Z, item.Published)
+		time_zone := time.FixedZone("CST", 8*3600)
+		t, err := time.ParseInLocation("2006-01-02 15:04:05", item.Published, time_zone)
 		if err != nil {
 			return nil, err
 		}
 
-		time_zone := time.FixedZone("CST", 8*3600)
 		if !utils.IsIn24Hours(t.In(time_zone)) {
-			// 默认时间顺序是从近到远
 			break
 		}
 

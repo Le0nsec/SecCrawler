@@ -6,7 +6,7 @@ SecCrawler
 ![SecCrawler](https://socialify.git.ci/Le0nsec/SecCrawler/image?font=Inter&language=1&logo=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F66706544&owner=1&pattern=Floating%20Cogs&theme=Dark)
 
 <h4 align="center">
-一个方便安全研究人员获取每日安全日报的爬虫和推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区、洞见微信聚合，持续更新中。
+一个方便安全研究人员获取每日安全日报的爬虫和推送程序，目前爬取范围包括先知社区、安全客、Seebug Paper、跳跳糖、奇安信攻防社区、棱角社区，持续更新中。
 </h4>
 
 <p align="center">
@@ -19,7 +19,7 @@ SecCrawler
   <a href="https://github.com/Le0nsec/SecCrawler/stargazers">
     <img src="https://img.shields.io/github/stars/Le0nsec/SecCrawler?style=flat-square">
   </a>
-  <a href="https://github.com/Le0nsec/SecCrawler/blob/main/LICENSE">
+  <a href="https://github.com/Le0nsec/SecCrawler/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/Le0nsec/SecCrawler?style=flat-square">
   </a>
   <a href="https://github.com/RichardLitt/standard-readme">
@@ -300,4 +300,4 @@ Bot:
 ## License
 
 
-[GNU General Public License v3.0](https://github.com/Le0nsec/SecCrawler/blob/main/LICENSE)
+[GNU General Public License v3.0](https://github.com/Le0nsec/SecCrawler/blob/master/LICENSE)

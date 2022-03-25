@@ -64,6 +64,18 @@ func DefaultConfig() Config {
 			Tttang:      TttangStruct{Enabled: false},
 			QiAnXin:     QiAnXinStruct{Enabled: false},
 			// DongJian:    DongJianStruct{Enabled: false},
+			Lab: LabStruct{
+				Enabled:     false,
+				NoahLab:     NoahLabStruct{Enabled: true},
+				Blog360:     Blog360Struct{Enabled: true},
+				Nsfocus:     NsfocusStruct{Enabled: true},
+				Xlab:        XlabStruct{Enabled: true},
+				AlphaLab:    AlphaLabStruct{Enabled: true},
+				Netlab:      NetlabStruct{Enabled: true},
+				RiskivyBlog: RiskivyBlogStruct{Enabled: true},
+				TSRCBlog:    TSRCBlogStruct{Enabled: true},
+				X1cT34m:     X1cT34mStruct{Enabled: true},
+			},
 		},
 		Bot: BotStruct{
 			WecomBot: WecomBotStruct{

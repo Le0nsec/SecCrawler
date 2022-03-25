@@ -37,6 +37,7 @@ type CrawlerStruct struct {
 	Tttang      TttangStruct      `yaml:"Tttang"`
 	QiAnXin     QiAnXinStruct     `yaml:"QiAnXin"`
 	// DongJian    DongJianStruct    `yaml:"DongJian"`
+	Lab LabStruct `yaml:"Lab"`
 }
 
 type BotStruct struct {
@@ -113,5 +114,46 @@ type QiAnXinStruct struct {
 }
 
 type DongJianStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+
+type LabStruct struct {
+	Enabled     bool              `yaml:"enabled"`
+	NoahLab     NoahLabStruct     `yaml:"NoahLab"`
+	Blog360     Blog360Struct     `yaml:"Blog360"`
+	Nsfocus     NsfocusStruct     `yaml:"Nsfocus"`
+	Xlab        XlabStruct        `yaml:"Xlab"`
+	AlphaLab    AlphaLabStruct    `yaml:"AlphaLab"`
+	Netlab      NetlabStruct      `yaml:"Netlab"`
+	RiskivyBlog RiskivyBlogStruct `yaml:"RiskivyBlog"`
+	TSRCBlog    TSRCBlogStruct    `yaml:"TSRCBlog"`
+	X1cT34m     X1cT34mStruct     `yaml:"X1cT34m"`
+}
+
+type NoahLabStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+type Blog360Struct struct {
+	Enabled bool `yaml:"enabled"`
+}
+type NsfocusStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+type XlabStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+type AlphaLabStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+type NetlabStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+type RiskivyBlogStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+type TSRCBlogStruct struct {
+	Enabled bool `yaml:"enabled"`
+}
+type X1cT34mStruct struct {
 	Enabled bool `yaml:"enabled"`
 }
