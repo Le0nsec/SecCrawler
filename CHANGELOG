@@ -4,13 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [v2.2] - 2022-03-26
 ### Added
 - 优化: 使用gofeed解析rss
 - 洞见聚合url改为推荐分类的url，并且暂时限制推送文章为10篇，等有合适的短链接或者筛选方法再完善
 - 爬取先知社区增加了可选功能
+- 添加以下博客或实验室文章爬取
+    - [Noah Lab](http://noahblog.360.cn/)
+    - [360 核心安全技术博客](https://blogs.360.net/)
+    - [绿盟科技技术博客](http://blog.nsfocus.net/)
+    - [腾讯安全玄武实验室](https://xlab.tencent.com/)
+    - [天融信阿尔法实验室](http://blog.topsec.com.cn)
+    - [360 Netlab](https://blog.netlab.360.com/)
+    - [斗象能力中心](https://blog.riskivy.com/)
+    - [腾讯安全响应中心](https://security.tencent.com/index.php/blog)
+    - [南京邮电大学小绿草信息安全实验室](https://ctf.njupt.edu.cn/)
+### Removed
 - 优化：暂时注释洞见微信聚合，优化推送体验
-
 
 ## [v2.1] - 2022-02-23
 ### Added

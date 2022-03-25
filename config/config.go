@@ -33,10 +33,6 @@ var (
 	GOVERSION string = "go1.17.8"
 )
 
-// func GetGlobalConfig() *Config {
-// 	return cfg
-// }
-
 func DefaultConfig() Config {
 	return Config{
 		ChromeDriver: "./chromedriver/linux64",

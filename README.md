@@ -233,9 +233,28 @@ Crawler:
     enabled: false
   # 洞见微信聚合
   # http://wechat.doonsec.com/
-  DongJian:
-    enabled: false
-
+  # DongJian:
+  #   enabled: false
+  Lab:
+    enabled: true # 是否开启各大实验室文章爬取
+    NoahLab:
+      enabled: true
+    Blog360:
+      enabled: true
+    Nsfocus:
+      enabled: true
+    Xlab:
+      enabled: true
+    AlphaLab:
+      enabled: true
+    Netlab:
+      enabled: true
+    RiskivyBlog:
+      enabled: true
+    TSRCBlog:
+      enabled: true
+    X1cT34m:
+      enabled: true
 Bot:
   # 企业微信群机器人
   # https://work.weixin.qq.com/api/doc/90000/90136/91770
