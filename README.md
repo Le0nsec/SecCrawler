@@ -37,6 +37,7 @@ SecCrawler
 
 - [Introduction](#introduction)
    - [Usage](#usage) 
+   - [守护进程](#守护进程配置)
    - [API](#api) 
    - [先知社区相关配置说明](#先知社区相关配置说明) 
    - [ChromeDriver](#chromedriver) 
@@ -85,7 +86,9 @@ Options:
 - 使用`-test`参数执行一次程序后退出
 - 使用`-version`输出详细版本信息
 
-如果开启了定时任务（Cron），程序使用定时任务每天根据设置好的时间整点自动运行，编辑好相关配置后后台运行即可，示例运行命令：
+如果开启了定时任务（Cron），程序使用定时任务每天根据设置好的时间整点自动运行，编辑好相关配置后后台运行即可。
+
+简单运行命令：
 
 ```sh
 $ nohup ./SecCrawler >> run.log 2>&1 &
@@ -97,6 +100,37 @@ $ nohup ./SecCrawler >> run.log 2>&1 &
 $ screen ./SecCrawler
 $ ctrl a+d / control a+d # 回到主会话
 ```
+
+如果长期使用，建议配置[守护进程](#守护进程配置)。
+### 守护进程配置
+
+首先执行`vim /etc/systemd/system/SecCrawler.service`输入以下内容：
+
+```
+[Unit]
+Description=SecCrawler
+After=network.target
+ 
+[Service]
+Type=simple
+WorkingDirectory=<SecCrawler Path>
+ExecStart=<SecCrawler Path>/SecCrawler -c config.yml
+Restart=on-failure
+ 
+[Install]
+WantedBy=multi-user.target
+```
+
+其中`<SecCrawler Path>`为SecCrawler可执行文件存放的路径。
+
+保存后执行`systemctl daemon-reload`，现在你就可以使用以下命令来管理程序了：
+
+- 启动: systemctl start alist
+- 关闭: systemctl stop alist
+- 自启: systemctl enable alist
+- 状态: systemctl status alist
+- 重启: systemctl restart alist
+
 
 
 程序旨在帮助安全研究者自动化获取每日更新的安全文章，适用于每日安全日报推送，爬取的安全社区网站范围和支持推送的机器人持续增加中，欢迎在[issues](https://github.com/Le0nsec/SecCrawler/issues)中提供宝贵的建议。
