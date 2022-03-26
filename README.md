@@ -28,6 +28,9 @@ SecCrawler
   <a href="https://github.com/Le0nsec/SecCrawler/releases">
     <img src="https://img.shields.io/github/v/release/Le0nsec/SecCrawler?include_prereleases&style=flat-square">
   </a>
+  <a href="https://github.com/Le0nsec/SecCrawler/releases">
+    <img src="https://img.shields.io/github/downloads/Le0nsec/SecCrawler/total?color=red&style=flat-square">
+  </a>  
 </p>
 
 
