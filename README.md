@@ -133,6 +133,7 @@ WantedBy=multi-user.target
 - 自启: systemctl enable SecCrawler
 - 状态: systemctl status SecCrawler
 - 重启: systemctl restart SecCrawler
+- **查看日志**: journalctl -u SecCrawler
 
 
 
