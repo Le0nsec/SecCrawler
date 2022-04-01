@@ -172,11 +172,13 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 
 > 命令行可以使用`google-chrome-stable --version`查看版本
 
-### 微信推送群
+### 微信或QQ推送群
 
-如果不想自己配置环境，只想获取每日推送，可以微信扫码加推送群：
+如果不想自己配置环境，只想获取每日推送，可以扫码加推送群：
 
-<img src="https://user-images.githubusercontent.com/66706544/161177856-28747b34-c6bc-4048-8ec4-1f3ae7ad1452.jpg" width = "300" alt="" align=center />
+如果微信群二维码失效或者人数已满，可以添加微信号：WgpSecBot，然后私聊发送 SecCrawler 进群。
+
+<img src="https://user-images.githubusercontent.com/66706544/161177856-28747b34-c6bc-4048-8ec4-1f3ae7ad1452.jpg" width = "300" alt="" align=center /><img src="https://user-images.githubusercontent.com/66706544/161190566-96e23bb6-c7f8-4811-a52c-fc175b341cfc.jpg" width = "300" alt="" align=center />
 
 
 ## Features
