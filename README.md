@@ -44,6 +44,7 @@ SecCrawler
    - [API](#api) 
    - [先知社区相关配置说明](#先知社区相关配置说明) 
    - [ChromeDriver](#chromedriver) 
+   - [微信推送群](#微信推送群)
 - [Features](#features)
 - [Install](#install)
 - [Config](#config)
@@ -170,6 +171,13 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 > Chrome浏览器可以访问`chrome://version/`查看版本
 
 > 命令行可以使用`google-chrome-stable --version`查看版本
+
+### 微信推送群
+
+如果不想自己配置环境，只想获取每日推送，可以微信扫码加推送群：
+
+<img src="https://user-images.githubusercontent.com/66706544/161177856-28747b34-c6bc-4048-8ec4-1f3ae7ad1452.jpg" width = "300" alt="" align=center />
+
 
 ## Features
 
