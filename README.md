@@ -44,7 +44,7 @@ SecCrawler
    - [API](#api) 
    - [先知社区相关配置说明](#先知社区相关配置说明) 
    - [ChromeDriver](#chromedriver) 
-   - [微信推送群](#微信推送群)
+   - [微信或QQ推送群](#微信或QQ推送群)
 - [Features](#features)
 - [Install](#install)
 - [Config](#config)
