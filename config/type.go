@@ -47,6 +47,7 @@ type BotStruct struct {
 	HexQBot    HexQBotStruct    `yaml:"HexQBot"`
 	ServerChan ServerChanStruct `yaml:"ServerChan"`
 	WgpSecBot  WgpSecBotStruct  `yaml:"WgpSecBot"`
+	CqHttpBot  CqHttpBotStruct  `yaml:"CqHttpBot"`
 }
 
 type WecomBotStruct struct {
@@ -83,6 +84,14 @@ type ServerChanStruct struct {
 
 type WgpSecBotStruct struct {
 	Enabled bool   `yaml:"enabled"`
+	Key     string `yaml:"key"`
+	Timeout uint8  `yaml:"timeout"`
+}
+
+type CqHttpBotStruct struct {
+	Enabled bool   `yaml:"enabled"`
+	Api     string `yaml:"api"`
+	QQGroup uint64 `yaml:"qqgroup"`
 	Key     string `yaml:"key"`
 	Timeout uint8  `yaml:"timeout"`
 }
