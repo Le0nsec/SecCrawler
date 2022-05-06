@@ -106,6 +106,13 @@ func DefaultConfig() Config {
 				Key:     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 				Timeout: 2,
 			},
+			CqHttpBot: CqHttpBotStruct{
+				Enabled: false,
+				Api:     "http://xxxxxx.com/send",
+				QQGroup: 000000000,
+				Key:     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+				Timeout: 2,
+			},
 		},
 	}
 }
