@@ -32,4 +32,7 @@ func CrawlerInit() {
 	if Cfg.Crawler.Lab.Enabled {
 		register.RegisterCrawler(&lab.Lab{})
 	}
+	if Cfg.Crawler.HuoxianZone.Enabled {
+		register.RegisterCrawler(&HuoxianZone{})
+	}
 }

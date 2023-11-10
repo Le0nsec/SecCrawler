@@ -148,6 +148,7 @@ SecCrawler提供了Web API，配合其他工具可以主动调用API进行爬取
 
 - [API文档](https://www.apifox.cn/apidoc/shared-b613c4fc-56a6-4724-831f-4c1ac5547ab5)
 - 注意请求API需要带上Authorization头，在配置文件中配置`auth`值
+- 若想为API配置证书，可使用[nginx](https://www.nginx.com/)等反向代理工具实现。
 
 ### 先知社区相关配置说明
 
@@ -193,6 +194,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
 - [x] ~~[洞见微信聚合](http://wechat.doonsec.com/)~~ 暂时注释，有需要可自行编译
 - [x] 实验室
+- [x] [火线Zone](zone.huoxian.cn)
   - [x] [Noah Lab](http://noahblog.360.cn/)
   - [x] [360 核心安全技术博客](https://blogs.360.net/)
   - [x] [绿盟科技技术博客](http://blog.nsfocus.net/)
