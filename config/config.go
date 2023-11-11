@@ -109,6 +109,12 @@ func DefaultConfig() Config {
 				Key:     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 				Timeout: 2,
 			},
+			TgBot: TgBotStruct{
+				Enabled: false,
+				Token:   "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+				ChatId:  "@channelusername",
+				Timeout: 2,
+			},
 		},
 	}
 }
