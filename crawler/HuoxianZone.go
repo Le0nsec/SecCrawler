@@ -4,6 +4,7 @@ import (
 	"SecCrawler/register"
 	"SecCrawler/utils"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -33,7 +34,7 @@ type respDataJson struct {
 func (crawler HuoxianZone) Config() register.CrawlerConfig {
 	return register.CrawlerConfig{
 		Name:        "火线Zone",
-		Description: "全部主题 - 火线 Zone-安全攻防社区",
+		Description: "火线 Zone-安全攻防社区",
 	}
 }
 
@@ -132,7 +133,7 @@ func (crawler HuoxianZone) Get() ([][]string, error) {
 			fmt.Printf("%s\n\n", paperUrl)
 
 			var s []string
-			s = append(s, match.Attributes.Title, paperUrl)
+			s = append(s, paperUrl, match.Attributes.Title)
 			resultSlice = append(resultSlice, s)
 		}
 
@@ -142,6 +143,9 @@ func (crawler HuoxianZone) Get() ([][]string, error) {
 
 	}
 
+	if len(resultSlice) == 0 {
+		return nil, errors.New("no records in the last 24 hours")
+	}
 	return resultSlice, nil
 
 }

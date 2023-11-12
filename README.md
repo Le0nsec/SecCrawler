@@ -194,7 +194,6 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [奇安信攻防社区](https://forum.butian.net/community/all/newest)
 - [x] ~~[洞见微信聚合](http://wechat.doonsec.com/)~~ 暂时注释，有需要可自行编译
 - [x] 实验室
-- [x] [火线Zone](zone.huoxian.cn)
   - [x] [Noah Lab](http://noahblog.360.cn/)
   - [x] [360 核心安全技术博客](https://blogs.360.net/)
   - [x] [绿盟科技技术博客](http://blog.nsfocus.net/)
@@ -204,6 +203,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
   - [x] [斗象能力中心](https://blog.riskivy.com/)
   - [x] [腾讯安全响应中心](https://security.tencent.com/index.php/blog)
   - [x] [南京邮电大学小绿草信息安全实验室](https://ctf.njupt.edu.cn/)
+- [x] [火线Zone](zone.huoxian.cn)
   
 
 支持的推送机器人列表：
@@ -214,6 +214,7 @@ ChromeDriver镜像站：http://npm.taobao.org/mirrors/chromedriver/
 - [x] [飞书群机器人](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN)
 - [x] [钉钉群机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
 - [x] [WgpSecBot](https://bot.wgpsec.org)
+- [x] [Telegram Bot](https://core.telegram.org/bots/api)
 - [ ] [pushplus](http://pushplus.hxtrip.com/)
 
 ## Install
@@ -305,6 +306,10 @@ Crawler:
       enabled: true
     X1cT34m:
       enabled: true
+  # 火线 Zone-安全攻防社区
+  # https://zone.huoxian.cn/?sort=newest
+  HuoxianZone:
+    enabled: true
 Bot:
   # 企业微信群机器人
   # https://work.weixin.qq.com/api/doc/90000/90136/91770
@@ -344,7 +349,13 @@ Bot:
     enabled: false
     key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     timeout: 2
-
+  # TgBot
+  # https://core.telegram.org/bots/api
+  TgBot:
+    enabled: false
+    token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    chatId: '@channelusername'
+    timeout: 2
 ```
 
 ## Demo
