@@ -29,8 +29,8 @@ var (
 	ConfigFile string
 
 	GITHUB    string = "https://github.com/Le0nsec/SecCrawler"
-	TAG       string = "v2.2"
-	GOVERSION string = "go1.17.8"
+	TAG       string = "v2.4"
+	GOVERSION string = "go1.21.3"
 )
 
 func DefaultConfig() Config {
@@ -107,6 +107,12 @@ func DefaultConfig() Config {
 			WgpSecBot: WgpSecBotStruct{
 				Enabled: false,
 				Key:     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+				Timeout: 2,
+			},
+			TgBot: TgBotStruct{
+				Enabled: false,
+				Token:   "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+				ChatId:  "@channelusername",
 				Timeout: 2,
 			},
 		},
