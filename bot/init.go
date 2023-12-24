@@ -24,5 +24,8 @@ func BotInit() {
 	if Cfg.Bot.WgpSecBot.Enabled {
 		register.RegisterBot(&WgpSecBot{})
 	}
+	if Cfg.Bot.CqHttpBot.Enabled {
+		register.RegisterBot(&CqHttpBot{})
+	}
 
 }
