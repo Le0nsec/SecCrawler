@@ -72,6 +72,9 @@ func DefaultConfig() Config {
 				TSRCBlog:    TSRCBlogStruct{Enabled: true},
 				X1cT34m:     X1cT34mStruct{Enabled: true},
 			},
+			HuoxianZone: HuoxianZoneStruct{
+				Enabled: true,
+			},
 		},
 		Bot: BotStruct{
 			WecomBot: WecomBotStruct{

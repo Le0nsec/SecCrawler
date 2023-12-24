@@ -37,7 +37,8 @@ type CrawlerStruct struct {
 	Tttang      TttangStruct      `yaml:"Tttang"`
 	QiAnXin     QiAnXinStruct     `yaml:"QiAnXin"`
 	// DongJian    DongJianStruct    `yaml:"DongJian"`
-	Lab LabStruct `yaml:"Lab"`
+	Lab         LabStruct         `yaml:"Lab"`
+	HuoxianZone HuoxianZoneStruct `yaml:"HuoxianZone"`
 }
 
 type BotStruct struct {
@@ -128,6 +129,10 @@ type LabStruct struct {
 	RiskivyBlog RiskivyBlogStruct `yaml:"RiskivyBlog"`
 	TSRCBlog    TSRCBlogStruct    `yaml:"TSRCBlog"`
 	X1cT34m     X1cT34mStruct     `yaml:"X1cT34m"`
+}
+
+type HuoxianZoneStruct struct {
+	Enabled bool `yaml:"enabled"`
 }
 
 type NoahLabStruct struct {
